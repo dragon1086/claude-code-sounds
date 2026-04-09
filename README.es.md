@@ -30,20 +30,20 @@ Retroalimentación de audio para cada evento del ciclo de vida de Claude Code, i
 ### A través del marketplace de plugins de Claude Code (recomendado)
 
 ```
-/plugin marketplace add https://github.com/<org>/claude-code-sounds
+/plugin marketplace add https://github.com/dragon1086/claude-code-sounds
 /plugin install claude-code-sounds
 ```
 
 ### A través de curl
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<org>/claude-code-sounds/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/dragon1086/claude-code-sounds/main/install.sh | bash
 ```
 
 ### A través de clone
 
 ```bash
-git clone https://github.com/<org>/claude-code-sounds
+git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 

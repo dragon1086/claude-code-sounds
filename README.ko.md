@@ -30,20 +30,20 @@
 ### Claude Code 플러그인 마켓플레이스 이용 (권장)
 
 ```
-/plugin marketplace add https://github.com/<org>/claude-code-sounds
+/plugin marketplace add https://github.com/dragon1086/claude-code-sounds
 /plugin install claude-code-sounds
 ```
 
 ### curl 이용
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<org>/claude-code-sounds/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/dragon1086/claude-code-sounds/main/install.sh | bash
 ```
 
 ### 클론 이용
 
 ```bash
-git clone https://github.com/<org>/claude-code-sounds
+git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 

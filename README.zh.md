@@ -30,20 +30,20 @@
 ### 通过 Claude Code 插件市场安装（推荐）
 
 ```
-/plugin marketplace add https://github.com/<org>/claude-code-sounds
+/plugin marketplace add https://github.com/dragon1086/claude-code-sounds
 /plugin install claude-code-sounds
 ```
 
 ### 通过 curl 安装
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<org>/claude-code-sounds/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/dragon1086/claude-code-sounds/main/install.sh | bash
 ```
 
 ### 通过克隆安装
 
 ```bash
-git clone https://github.com/<org>/claude-code-sounds
+git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 

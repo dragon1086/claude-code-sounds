@@ -30,20 +30,20 @@ Audio feedback for every Claude Code lifecycle event — powered by the native h
 ### Via Claude Code plugin marketplace (recommended)
 
 ```
-/plugin marketplace add https://github.com/<org>/claude-code-sounds
+/plugin marketplace add https://github.com/dragon1086/claude-code-sounds
 /plugin install claude-code-sounds
 ```
 
 ### Via curl
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<org>/claude-code-sounds/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/dragon1086/claude-code-sounds/main/install.sh | bash
 ```
 
 ### Via clone
 
 ```bash
-git clone https://github.com/<org>/claude-code-sounds
+git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
