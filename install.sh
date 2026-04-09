@@ -57,34 +57,40 @@ with open(path) as f:
 
 HOOK_CMD = "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/scripts/hooks.py"
 
+def make_hook(cmd, once=False):
+    h = {"type": "command", "command": cmd, "async": True, "timeout": 5000}
+    if once:
+        h["once"] = True
+    return [{"matcher": "", "hooks": [h]}]
+
 HOOKS = {
-    "SessionStart":       [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"once":True,"statusMessage":"SessionStart"}],
-    "SessionEnd":         [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"once":True,"statusMessage":"SessionEnd"}],
-    "PreToolUse":         [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"PreToolUse"}],
-    "PostToolUse":        [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"PostToolUse"}],
-    "PostToolUseFailure": [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"PostToolUseFailure"}],
-    "UserPromptSubmit":   [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"UserPromptSubmit"}],
-    "Notification":       [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"Notification"}],
-    "Stop":               [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"Stop"}],
-    "StopFailure":        [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"StopFailure"}],
-    "SubagentStart":      [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"SubagentStart"}],
-    "SubagentStop":       [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"SubagentStop"}],
-    "PermissionRequest":  [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"PermissionRequest"}],
-    "PermissionDenied":   [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"PermissionDenied"}],
-    "PreCompact":         [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"once":True,"statusMessage":"PreCompact"}],
-    "PostCompact":        [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"PostCompact"}],
-    "InstructionsLoaded": [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"InstructionsLoaded"}],
-    "ConfigChange":       [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"ConfigChange"}],
-    "Setup":              [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"Setup"}],
-    "TeammateIdle":       [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"TeammateIdle"}],
-    "TaskCreated":        [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"TaskCreated"}],
-    "TaskCompleted":      [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"TaskCompleted"}],
-    "WorktreeCreate":     [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"WorktreeCreate"}],
-    "WorktreeRemove":     [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"WorktreeRemove"}],
-    "CwdChanged":         [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"CwdChanged"}],
-    "FileChanged":        [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"FileChanged"}],
-    "Elicitation":        [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"Elicitation"}],
-    "ElicitationResult":  [{"type":"command","command":HOOK_CMD,"async":True,"timeout":5000,"statusMessage":"ElicitationResult"}],
+    "SessionStart":       make_hook(HOOK_CMD, once=True),
+    "SessionEnd":         make_hook(HOOK_CMD, once=True),
+    "PreToolUse":         make_hook(HOOK_CMD),
+    "PostToolUse":        make_hook(HOOK_CMD),
+    "PostToolUseFailure": make_hook(HOOK_CMD),
+    "UserPromptSubmit":   make_hook(HOOK_CMD),
+    "Notification":       make_hook(HOOK_CMD),
+    "Stop":               make_hook(HOOK_CMD),
+    "StopFailure":        make_hook(HOOK_CMD),
+    "SubagentStart":      make_hook(HOOK_CMD),
+    "SubagentStop":       make_hook(HOOK_CMD),
+    "PermissionRequest":  make_hook(HOOK_CMD),
+    "PermissionDenied":   make_hook(HOOK_CMD),
+    "PreCompact":         make_hook(HOOK_CMD, once=True),
+    "PostCompact":        make_hook(HOOK_CMD),
+    "InstructionsLoaded": make_hook(HOOK_CMD),
+    "ConfigChange":       make_hook(HOOK_CMD),
+    "Setup":              make_hook(HOOK_CMD),
+    "TeammateIdle":       make_hook(HOOK_CMD),
+    "TaskCreated":        make_hook(HOOK_CMD),
+    "TaskCompleted":      make_hook(HOOK_CMD),
+    "WorktreeCreate":     make_hook(HOOK_CMD),
+    "WorktreeRemove":     make_hook(HOOK_CMD),
+    "CwdChanged":         make_hook(HOOK_CMD),
+    "FileChanged":        make_hook(HOOK_CMD),
+    "Elicitation":        make_hook(HOOK_CMD),
+    "ElicitationResult":  make_hook(HOOK_CMD),
 }
 
 existing = settings.get("hooks", {})

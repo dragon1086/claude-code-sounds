@@ -309,34 +309,40 @@ with open(path) as f:
 
 CMD = "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/scripts/hooks.py"
 
+def make_hook(cmd, once=False):
+    h = {"type": "command", "command": cmd, "async": True, "timeout": 5000}
+    if once:
+        h["once"] = True
+    return [{"matcher": "", "hooks": [h]}]
+
 HOOKS = {
-    "SessionStart":       [{"type":"command","command":CMD,"async":True,"timeout":5000,"once":True}],
-    "SessionEnd":         [{"type":"command","command":CMD,"async":True,"timeout":5000,"once":True}],
-    "PreToolUse":         [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "PostToolUse":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "PostToolUseFailure": [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "UserPromptSubmit":   [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "Notification":       [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "Stop":               [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "StopFailure":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "SubagentStart":      [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "SubagentStop":       [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "PermissionRequest":  [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "PermissionDenied":   [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "PreCompact":         [{"type":"command","command":CMD,"async":True,"timeout":5000,"once":True}],
-    "PostCompact":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "InstructionsLoaded": [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "ConfigChange":       [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "Setup":              [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "TeammateIdle":       [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "TaskCreated":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "TaskCompleted":      [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "WorktreeCreate":     [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "WorktreeRemove":     [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "CwdChanged":         [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "FileChanged":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "Elicitation":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
-    "ElicitationResult":  [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "SessionStart":       make_hook(CMD, once=True),
+    "SessionEnd":         make_hook(CMD, once=True),
+    "PreToolUse":         make_hook(CMD),
+    "PostToolUse":        make_hook(CMD),
+    "PostToolUseFailure": make_hook(CMD),
+    "UserPromptSubmit":   make_hook(CMD),
+    "Notification":       make_hook(CMD),
+    "Stop":               make_hook(CMD),
+    "StopFailure":        make_hook(CMD),
+    "SubagentStart":      make_hook(CMD),
+    "SubagentStop":       make_hook(CMD),
+    "PermissionRequest":  make_hook(CMD),
+    "PermissionDenied":   make_hook(CMD),
+    "PreCompact":         make_hook(CMD, once=True),
+    "PostCompact":        make_hook(CMD),
+    "InstructionsLoaded": make_hook(CMD),
+    "ConfigChange":       make_hook(CMD),
+    "Setup":              make_hook(CMD),
+    "TeammateIdle":       make_hook(CMD),
+    "TaskCreated":        make_hook(CMD),
+    "TaskCompleted":      make_hook(CMD),
+    "WorktreeCreate":     make_hook(CMD),
+    "WorktreeRemove":     make_hook(CMD),
+    "CwdChanged":         make_hook(CMD),
+    "FileChanged":        make_hook(CMD),
+    "Elicitation":        make_hook(CMD),
+    "ElicitationResult":  make_hook(CMD),
 }
 
 existing = settings.get("hooks", {})
