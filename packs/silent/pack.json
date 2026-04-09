@@ -1,0 +1,6 @@
+{
+  "name": "silent",
+  "author": "claude-code-sounds",
+  "description": "100ms silence for all slots — effectively disables sounds without removing hooks",
+  "license": "MIT"
+}

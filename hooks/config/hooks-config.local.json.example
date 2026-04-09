@@ -1,0 +1,5 @@
+{
+  "disableLogging": true,
+  "disablePostToolUseHook": false,
+  "disableSessionStartHook": false
+}

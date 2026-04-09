@@ -1,0 +1,31 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate-sound-map:
+    name: Validate HOOK_SOUND_MAP vs sounds/ folders
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Check HOOK_SOUND_MAP keys match sounds/ folder names
+        run: python3 ci/check_sound_map.py
+
+      - name: Check all sound files use lowercase names
+        run: python3 ci/check_lowercase.py
+
+      - name: Lint hooks.py (syntax check)
+        run: python3 -m py_compile hooks/scripts/hooks.py && echo "OK: hooks.py syntax valid"
+
+      - name: Validate packs structure
+        run: python3 ci/check_packs.py

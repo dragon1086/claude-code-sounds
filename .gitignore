@@ -1,0 +1,59 @@
+# ── Local config override (personal prefs, never commit) ──────────────────────
+hooks/config/hooks-config.local.json
+
+# ── Hook event logs ────────────────────────────────────────────────────────────
+hooks/logs/
+
+# ── macOS ──────────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# ── Linux ──────────────────────────────────────────────────────────────────────
+*~
+.nfs*
+
+# ── Windows ────────────────────────────────────────────────────────────────────
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ── IDE / editors ──────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*.orig
+.editorconfig.local
+
+# ── Python ─────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Node (if any tooling is added) ────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+
+# ── Shell ──────────────────────────────────────────────────────────────────────
+*.log
+
+# ── Installer artifacts ────────────────────────────────────────────────────────
+# Don't ignore installed .claude/ — that lives in user projects, not this repo
+
+# ── OMC internal state ─────────────────────────────────────────────────────────
+.omc/
+
+# ── Secrets / env ──────────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
