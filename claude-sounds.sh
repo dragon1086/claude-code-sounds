@@ -270,6 +270,91 @@ EOF
     rm -f "$tmp_silent"
 }
 
+# Configure a project to use claude-code-sounds hooks via settings.json.
+# Works even when the plugin is installed as project-scope (not user-scope),
+# by copying hooks/ into the project's .claude/hooks/ and patching settings.json.
+cmd_setup_project() {
+    # Locate project root: prefer CLAUDE_PROJECT_DIR, then walk up for .claude/
+    local project_dir="${CLAUDE_PROJECT_DIR:-}"
+    if [[ -z "$project_dir" ]]; then
+        local dir="$PWD"
+        while [[ "$dir" != "/" ]]; do
+            [[ -d "$dir/.claude" ]] && { project_dir="$dir"; break; }
+            dir="$(dirname "$dir")"
+        done
+    fi
+    [[ -n "$project_dir" ]] || die "No Claude Code project found. Run from inside a project with a .claude/ directory, or set CLAUDE_PROJECT_DIR."
+
+    local target="$project_dir/.claude/hooks"
+
+    # Copy hooks/ from plugin source to project
+    if [[ -d "$target" ]]; then
+        info "Updating existing hooks at $target ..."
+        cp -r "$SCRIPT_DIR/hooks/." "$target/"
+    else
+        info "Installing hooks to $target ..."
+        cp -r "$SCRIPT_DIR/hooks" "$target"
+    fi
+
+    # Patch settings.json
+    local settings="$project_dir/.claude/settings.json"
+    [[ -f "$settings" ]] || echo "{}" > "$settings"
+
+    python3 - "$settings" <<'PYEOF'
+import json, sys
+
+path = sys.argv[1]
+with open(path) as f:
+    settings = json.load(f)
+
+CMD = "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/scripts/hooks.py"
+
+HOOKS = {
+    "SessionStart":       [{"type":"command","command":CMD,"async":True,"timeout":5000,"once":True}],
+    "SessionEnd":         [{"type":"command","command":CMD,"async":True,"timeout":5000,"once":True}],
+    "PreToolUse":         [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "PostToolUse":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "PostToolUseFailure": [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "UserPromptSubmit":   [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "Notification":       [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "Stop":               [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "StopFailure":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "SubagentStart":      [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "SubagentStop":       [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "PermissionRequest":  [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "PermissionDenied":   [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "PreCompact":         [{"type":"command","command":CMD,"async":True,"timeout":5000,"once":True}],
+    "PostCompact":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "InstructionsLoaded": [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "ConfigChange":       [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "Setup":              [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "TeammateIdle":       [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "TaskCreated":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "TaskCompleted":      [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "WorktreeCreate":     [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "WorktreeRemove":     [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "CwdChanged":         [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "FileChanged":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "Elicitation":        [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+    "ElicitationResult":  [{"type":"command","command":CMD,"async":True,"timeout":5000}],
+}
+
+existing = settings.get("hooks", {})
+existing.update(HOOKS)
+settings["hooks"] = existing
+
+with open(path, "w") as f:
+    json.dump(settings, f, indent=2, ensure_ascii=False)
+    f.write("\n")
+
+print(f"Patched {path} with {len(HOOKS)} hook events.")
+PYEOF
+
+    info ""
+    info "Done. Hooks installed at: $target"
+    info "Restart Claude Code session to activate."
+}
+
 # ── Entrypoint ────────────────────────────────────────────────────────────────
 usage() {
     cat << 'EOF'
@@ -281,20 +366,24 @@ Usage:
   claude-sounds use <pack>                Switch to a built-in pack (e.g. silent, default)
   claude-sounds use <url>                 Switch to an external pack (GitHub URL)
   claude-sounds preview <pack>            Show sounds in a pack
+  claude-sounds setup-project             Register hooks in this project's .claude/settings.json
+                                          (use when installed as project-scope via /plugin install)
 
 Examples:
   claude-sounds use silent
   claude-sounds use default
   claude-sounds use https://github.com/someone/star-trek-sounds
   claude-sounds list
+  claude-sounds setup-project
 EOF
 }
 
 case "${1:-}" in
-    list)    cmd_list ;;
-    current) cmd_current ;;
-    use)     cmd_use "${2:-}" ;;
-    preview) cmd_preview "${2:-}" ;;
+    list)           cmd_list ;;
+    current)        cmd_current ;;
+    use)            cmd_use "${2:-}" ;;
+    preview)        cmd_preview "${2:-}" ;;
+    setup-project)  cmd_setup_project ;;
     help|--help|-h|"") usage ;;
     *) die "Unknown command: $1. Run 'claude-sounds help' for usage." ;;
 esac

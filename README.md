@@ -37,6 +37,12 @@ Audio feedback for every Claude Code lifecycle event — powered by the native h
 > **Important — select User scope:** When prompted, choose **"user (global)"** scope, not "project".
 > Plugin hooks only fire when installed at user scope. Project-scope installs will enable the plugin
 > entry but sounds will not play.
+>
+> **If you already installed as project scope**, run this once inside the project to patch your
+> `.claude/settings.json` and get sounds working:
+> ```bash
+> bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh" | head -1)" setup-project
+> ```
 
 ### Via curl
 
