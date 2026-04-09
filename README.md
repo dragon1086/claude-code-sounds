@@ -11,6 +11,12 @@
 
 </div>
 
+<div align="center">
+
+**[한국어](README.ko.md) · [中文](README.zh.md) · [Español](README.es.md) · [日本語](README.ja.md)**
+
+</div>
+
 Audio feedback for every Claude Code lifecycle event — powered by the native hooks system. Ships with real ElevenLabs-generated voice files. Swap any sound by replacing one file.
 
 ## How it works
@@ -145,6 +151,10 @@ Sound files go in `agent_pretooluse/`, `agent_stop/`, etc.
 ```bash
 ./uninstall.sh
 ```
+
+## Credits
+
+Inspired by [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice), which first demonstrated wiring audio feedback into Claude Code hooks. This project extracts and generalizes that idea into a standalone, installable plugin with full hook coverage, sound packs, and cross-platform support.
 
 ## License
 
