@@ -27,30 +27,48 @@ Retroalimentación de audio para cada evento del ciclo de vida de Claude Code, i
 
 ## Instalación
 
-### A través del marketplace de plugins de Claude Code (recomendado)
+### Opción A — Marketplace de plugins (recomendado)
 
 ```
 /plugin marketplace add https://github.com/dragon1086/claude-code-sounds
 /plugin install claude-code-sounds
 ```
 
-> **Importante — selecciona el alcance User:** Cuando se te pida, elige **"user (global)"**, no "project".
-> Los hooks del plugin solo se activan cuando está instalado con alcance de usuario. Con alcance de proyecto el plugin se registra pero no se reproducen sonidos.
+Al seleccionar el alcance:
 
-### A través de curl
+| Opción | Resultado |
+|--------|-----------|
+| **user (global)** ✅ | Los sonidos se reproducen automáticamente en todos los proyectos |
+| project | Sin sonidos — ejecuta `setup-project` una vez por proyecto (ver abajo) |
+
+> **Tras la instalación:** Reinicia Claude Code para activar los hooks.
+
+#### Corrección para alcance project
+
+Si elegiste project scope, ejecuta esto dentro del proyecto:
+
+```bash
+bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh" | head -1)" setup-project
+```
+
+Reinicia Claude Code y los sonidos funcionarán.
+
+---
+
+### Opción B — curl
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/dragon1086/claude-code-sounds/main/install.sh | bash
 ```
 
-### A través de clone
+### Opción C — Clonar manualmente
 
 ```bash
 git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-> **Tras la instalación:** Cierra y vuelve a abrir Claude Code (o inicia una nueva sesión). El instalador modifica `.claude/settings.json` — los cambios se aplican al inicio de la siguiente sesión.
+> **Tras la instalación:** Reinicia Claude Code para activar los hooks.
 
 ## Requisitos
 

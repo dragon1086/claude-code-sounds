@@ -27,30 +27,48 @@
 
 ## 安装
 
-### 通过 Claude Code 插件市场安装（推荐）
+### 方式 A — 插件市场（推荐）
 
 ```
 /plugin marketplace add https://github.com/dragon1086/claude-code-sounds
 /plugin install claude-code-sounds
 ```
 
-> **重要 — 选择 User 范围：** 提示选择范围时，请选择 **"user (global)"**，而非 "project"。
-> 插件钩子仅在以用户范围安装时才会触发。以项目范围安装时插件会注册，但不会播放声音。
+选择范围时：
 
-### 通过 curl 安装
+| 选项 | 效果 |
+|------|------|
+| **user (global)** ✅ | 所有项目自动播放声音 |
+| project | 无声音 — 需在每个项目中运行一次 `setup-project`（见下文） |
+
+> **安装后：** 重启 Claude Code 以激活钩子。
+
+#### project 范围修复
+
+若已选择 project 范围，在项目目录内运行一次：
+
+```bash
+bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh" | head -1)" setup-project
+```
+
+重启 Claude Code 后即可播放声音。
+
+---
+
+### 方式 B — curl
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/dragon1086/claude-code-sounds/main/install.sh | bash
 ```
 
-### 通过克隆安装
+### 方式 C — 手动克隆
 
 ```bash
 git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-> **安装完成后：** 退出并重新启动 Claude Code（或开始新会话）。安装程序会修改 `.claude/settings.json`，下次启动会话时生效。
+> **安装后：** 重启 Claude Code 以激活钩子。
 
 ## 环境要求
 

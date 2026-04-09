@@ -27,30 +27,48 @@
 
 ## 설치
 
-### Claude Code 플러그인 마켓플레이스 이용 (권장)
+### 방법 A — 플러그인 마켓플레이스 (권장)
 
 ```
 /plugin marketplace add https://github.com/dragon1086/claude-code-sounds
 /plugin install claude-code-sounds
 ```
 
-> **중요 — User 스콥 선택:** 스콥 선택 시 반드시 **"user (global)"**을 선택하세요 (project 아님).
-> 플러그인 훅은 user 스콥으로 설치해야만 동작합니다. project 스콥으로 설치하면 플러그인은 등록되지만 소리가 나지 않아요.
+스콥 선택 시:
 
-### curl 이용
+| 선택 | 동작 |
+|------|------|
+| **user (global)** ✅ | 모든 프로젝트에서 자동으로 소리 남 |
+| project | 소리 안 남 — 프로젝트마다 `setup-project` 한 번 실행 필요 (아래 참조) |
+
+> **설치 후:** 훅 활성화를 위해 Claude Code를 재시작하세요.
+
+#### project 스콥 설치 시 추가 설정
+
+project 스콥으로 설치한 경우, 해당 프로젝트 안에서 한 번 실행:
+
+```bash
+bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh" | head -1)" setup-project
+```
+
+Claude Code 재시작 후 소리가 납니다. 이 명령어는 hooks를 `.claude/hooks/`에 복사하고 `.claude/settings.json`에 등록해요.
+
+---
+
+### 방법 B — curl
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/dragon1086/claude-code-sounds/main/install.sh | bash
 ```
 
-### 클론 이용
+### 방법 C — 직접 클론
 
 ```bash
 git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-> **설치 후:** Claude Code를 종료하고 재실행하세요 (또는 새 세션 시작). 설치 스크립트가 `.claude/settings.json`에 훅을 등록하며, 다음 세션 시작 시 적용됩니다.
+> **설치 후:** 훅 활성화를 위해 Claude Code를 재시작하세요.
 
 ## 요구 사항
 

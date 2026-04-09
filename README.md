@@ -27,37 +27,48 @@ Audio feedback for every Claude Code lifecycle event — powered by the native h
 
 ## Install
 
-### Via Claude Code plugin marketplace (recommended)
+### Option A — Plugin marketplace (recommended)
 
 ```
 /plugin marketplace add https://github.com/dragon1086/claude-code-sounds
 /plugin install claude-code-sounds
 ```
 
-> **Important — select User scope:** When prompted, choose **"user (global)"** scope, not "project".
-> Plugin hooks only fire when installed at user scope. Project-scope installs will enable the plugin
-> entry but sounds will not play.
->
-> **If you already installed as project scope**, run this once inside the project to patch your
-> `.claude/settings.json` and get sounds working:
-> ```bash
-> bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh" | head -1)" setup-project
-> ```
+When prompted for scope:
 
-### Via curl
+| Choice | What happens |
+|--------|-------------|
+| **user (global)** ✅ | Sounds play in every project automatically |
+| project | Sounds silent — run `setup-project` once per project (see below) |
+
+> **After install:** Restart Claude Code for hooks to activate.
+
+#### Project-scope fix
+
+If you chose project scope (or want per-project opt-in), run once inside the project:
+
+```bash
+bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh" | head -1)" setup-project
+```
+
+Then restart Claude Code. This copies hooks into `.claude/hooks/` and registers them in `.claude/settings.json`.
+
+---
+
+### Option B — curl (git-clone approach)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/dragon1086/claude-code-sounds/main/install.sh | bash
 ```
 
-### Via clone
+### Option C — Manual clone
 
 ```bash
 git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-> **After install:** Quit and relaunch Claude Code (or start a new session) for the hooks to take effect.
+> **After install:** Restart Claude Code for hooks to activate.
 
 ## Requirements
 
