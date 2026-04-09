@@ -34,6 +34,10 @@ Audio feedback for every Claude Code lifecycle event — powered by the native h
 /plugin install claude-code-sounds
 ```
 
+> **Important — select User scope:** When prompted, choose **"user (global)"** scope, not "project".
+> Plugin hooks only fire when installed at user scope. Project-scope installs will enable the plugin
+> entry but sounds will not play.
+
 ### Via curl
 
 ```bash
@@ -47,7 +51,7 @@ git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-> **After install:** Quit and relaunch Claude Code (or start a new session) for the hooks to take effect. The installer patches `.claude/settings.json` — changes are picked up on next session start.
+> **After install:** Quit and relaunch Claude Code (or start a new session) for the hooks to take effect.
 
 ## Requirements
 

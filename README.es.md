@@ -34,6 +34,9 @@ Retroalimentación de audio para cada evento del ciclo de vida de Claude Code, i
 /plugin install claude-code-sounds
 ```
 
+> **Importante — selecciona el alcance User:** Cuando se te pida, elige **"user (global)"**, no "project".
+> Los hooks del plugin solo se activan cuando está instalado con alcance de usuario. Con alcance de proyecto el plugin se registra pero no se reproducen sonidos.
+
 ### A través de curl
 
 ```bash

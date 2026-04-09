@@ -34,6 +34,9 @@
 /plugin install claude-code-sounds
 ```
 
+> **重要 — 选择 User 范围：** 提示选择范围时，请选择 **"user (global)"**，而非 "project"。
+> 插件钩子仅在以用户范围安装时才会触发。以项目范围安装时插件会注册，但不会播放声音。
+
 ### 通过 curl 安装
 
 ```bash

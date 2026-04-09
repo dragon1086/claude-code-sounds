@@ -34,6 +34,9 @@
 /plugin install claude-code-sounds
 ```
 
+> **중요 — User 스콥 선택:** 스콥 선택 시 반드시 **"user (global)"**을 선택하세요 (project 아님).
+> 플러그인 훅은 user 스콥으로 설치해야만 동작합니다. project 스콥으로 설치하면 플러그인은 등록되지만 소리가 나지 않아요.
+
 ### curl 이용
 
 ```bash
