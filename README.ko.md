@@ -40,6 +40,7 @@
 |------|------|
 | **user (global)** ✅ | 모든 프로젝트에서 자동으로 소리 남 |
 | project | 소리 안 남 — 프로젝트마다 `setup-project` 한 번 실행 필요 (아래 참조) |
+| local | project와 동일하나 git 제외 (개인 설정용) — `setup-project` 필요 |
 
 > **설치 후:** 훅 활성화를 위해 Claude Code를 재시작하세요.
 

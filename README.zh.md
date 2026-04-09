@@ -40,6 +40,7 @@
 |------|------|
 | **user (global)** ✅ | 所有项目自动播放声音 |
 | project | 无声音 — 需在每个项目中运行一次 `setup-project`（见下文） |
+| local | 与 project 相同，但不纳入 git（个人配置）— 同样需要 `setup-project` |
 
 > **安装后：** 重启 Claude Code 以激活钩子。
 

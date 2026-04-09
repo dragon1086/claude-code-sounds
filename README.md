@@ -40,6 +40,7 @@ When prompted for scope:
 |--------|-------------|
 | **user (global)** ✅ | Sounds play in every project automatically |
 | project | Sounds silent — run `setup-project` once per project (see below) |
+| local | Same as project, but excluded from git (personal config) — also needs `setup-project` |
 
 > **After install:** Restart Claude Code for hooks to activate.
 

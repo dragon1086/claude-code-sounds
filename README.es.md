@@ -40,6 +40,7 @@ Al seleccionar el alcance:
 |--------|-----------|
 | **user (global)** ✅ | Los sonidos se reproducen automáticamente en todos los proyectos |
 | project | Sin sonidos — ejecuta `setup-project` una vez por proyecto (ver abajo) |
+| local | Igual que project, pero excluido de git (config personal) — también necesita `setup-project` |
 
 > **Tras la instalación:** Reinicia Claude Code para activar los hooks.
 
