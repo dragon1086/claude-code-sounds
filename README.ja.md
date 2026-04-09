@@ -47,7 +47,7 @@ git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-インストール後、Claude Code を再起動してください。
+> **インストール後：** Claude Code を終了して再起動するか、新しいセッションを開始してください。インストーラーが `.claude/settings.json` にフックを登録し、次回セッション開始時に有効になります。
 
 ## 必要要件
 

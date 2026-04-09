@@ -47,7 +47,7 @@ git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-Reinicia Claude Code después de la instalación.
+> **Tras la instalación:** Cierra y vuelve a abrir Claude Code (o inicia una nueva sesión). El instalador modifica `.claude/settings.json` — los cambios se aplican al inicio de la siguiente sesión.
 
 ## Requisitos
 

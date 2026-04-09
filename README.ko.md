@@ -47,7 +47,7 @@ git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-설치 후 Claude Code를 재시작하세요.
+> **설치 후:** Claude Code를 종료하고 재실행하세요 (또는 새 세션 시작). 설치 스크립트가 `.claude/settings.json`에 훅을 등록하며, 다음 세션 시작 시 적용됩니다.
 
 ## 요구 사항
 

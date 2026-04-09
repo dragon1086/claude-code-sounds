@@ -47,7 +47,7 @@ git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-Restart Claude Code after install.
+> **After install:** Quit and relaunch Claude Code (or start a new session) for the hooks to take effect. The installer patches `.claude/settings.json` — changes are picked up on next session start.
 
 ## Requirements
 

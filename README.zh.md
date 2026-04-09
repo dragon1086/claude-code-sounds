@@ -47,7 +47,7 @@ git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-安装完成后重启 Claude Code。
+> **安装完成后：** 退出并重新启动 Claude Code（或开始新会话）。安装程序会修改 `.claude/settings.json`，下次启动会话时生效。
 
 ## 环境要求
 
