@@ -1,8 +1,23 @@
-# claude-code-sounds
+<div align="center">
+  <img src="docs/assets/banner.png" alt="claude-code-sounds" width="600" />
+</div>
 
-Your Claude Code sessions, now with a soundtrack. Zero config, full hook coverage.
+<div align="center">
+
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Validate](https://github.com/dragon1086/claude-code-sounds/actions/workflows/validate.yml/badge.svg)](https://github.com/dragon1086/claude-code-sounds/actions/workflows/validate.yml)
+![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)
+![Hook Coverage](https://img.shields.io/badge/hooks-27%20events%20covered-7c3aed)
+
+</div>
 
 Audio feedback for every Claude Code lifecycle event — powered by the native hooks system. Ships with real ElevenLabs-generated voice files. Swap any sound by replacing one file.
+
+## How it works
+
+<div align="center">
+  <img src="docs/assets/flow.png" alt="How claude-code-sounds works" width="700" />
+</div>
 
 ## Install
 
