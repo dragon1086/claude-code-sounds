@@ -25,7 +25,9 @@ jobs:
         run: python3 ci/check_lowercase.py
 
       - name: Lint hooks.py (syntax check)
-        run: python3 -m py_compile hooks/scripts/hooks.py && echo "OK: hooks.py syntax valid"
+        run: |
+          python3 -m py_compile hooks/scripts/hooks.py
+          echo "OK: hooks.py syntax valid"
 
       - name: Validate packs structure
         run: python3 ci/check_packs.py
