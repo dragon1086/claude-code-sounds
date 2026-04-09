@@ -1,0 +1,10 @@
+{
+  "name": "claude-code-sounds",
+  "description": "Audio feedback for every Claude Code lifecycle event. Ships with ElevenLabs voice files, zero config, full hook coverage.",
+  "version": "1.0.0",
+  "author": {
+    "name": "dragon1086"
+  },
+  "homepage": "https://github.com/dragon1086/claude-code-sounds",
+  "license": "MIT"
+}
