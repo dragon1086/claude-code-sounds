@@ -12,6 +12,7 @@ Agent Support:
   Agent frontmatter hooks support 6 hooks: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, SubagentStop
 """
 
+import os
 import sys
 import json
 import subprocess
@@ -143,15 +144,23 @@ def play_sound(sound_name):
         # No audio player available - fail silently
         return False
 
-    # Build the path to the sound folder
-    # Scripts are in .claude/hooks/scripts/, sounds are in .claude/hooks/sounds/
-    script_dir = Path(__file__).parent  # .claude/hooks/scripts/
-    hooks_dir = script_dir.parent  # .claude/hooks/
+    # Build candidate sound directories in priority order:
+    #   1. Project-local override: $CLAUDE_PROJECT_DIR/.claude/hooks/sounds/
+    #      (user drops files here to override plugin defaults, or claude-sounds use copies here)
+    #   2. Plugin/script-local sounds: {hooks_dir}/sounds/
+    #      (the plugin cache or a git-cloned install)
+    script_dir = Path(__file__).parent  # …/hooks/scripts/
+    hooks_dir = script_dir.parent       # …/hooks/
 
     # Determine the folder based on the sound name prefix
     # For special sounds like "pretooluse-git-committing", look in "pretooluse" folder
     folder_name = sound_name.split('-')[0]
-    sounds_dir = hooks_dir / "sounds" / folder_name
+
+    candidate_dirs = []
+    project_dir = os.environ.get("CLAUDE_PROJECT_DIR")
+    if project_dir:
+        candidate_dirs.append(Path(project_dir) / ".claude" / "hooks" / "sounds" / folder_name)
+    candidate_dirs.append(hooks_dir / "sounds" / folder_name)
 
     # Check if we're on Windows and need special handling
     is_windows = audio_player[0] == "WINDOWS"
@@ -161,7 +170,8 @@ def play_sound(sound_name):
     # On Windows, only use WAV files to avoid PowerShell/COM issues
     extensions = ['.wav'] if is_windows else ['.wav', '.mp3']
 
-    for extension in extensions:
+    for sounds_dir in candidate_dirs:
+      for extension in extensions:
         file_path = sounds_dir / f"{sound_name}{extension}"
 
         if file_path.exists():
