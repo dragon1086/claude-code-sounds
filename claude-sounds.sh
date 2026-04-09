@@ -58,13 +58,33 @@ with open(path, 'w') as f:
     fi
 }
 
-# Copy a pack's sounds/ tree into hooks/sounds/
-# Only overwrites files present in the pack (partial pack support).
+# Copy a pack's sounds/ tree into hooks/sounds/.
+# Always starts from the default pack, then overlays the target pack on top.
+# This guarantees partial packs fall back to default for missing slots —
+# regardless of what the previous active pack was.
 apply_pack_sounds() {
     local pack_sounds_dir="$1"
     require_sounds_dir
 
-    # Resolve symlinks so rsync works correctly
+    _rsync_dir() {
+        local src="$1" dst="$2"
+        if command -v rsync &>/dev/null; then
+            rsync -a --no-whole-file "$src/" "$dst/"
+        else
+            cp -r "$src/." "$dst/"
+        fi
+    }
+
+    # ── Step 1: restore default as the base ───────────────────────────────
+    local default_sounds
+    default_sounds="$(python3 -c "import os; print(os.path.realpath('$PACKS_DIR/default/sounds'))" 2>/dev/null \
+        || readlink "$PACKS_DIR/default/sounds" || echo "$PACKS_DIR/default/sounds")"
+
+    if [[ -d "$default_sounds" ]]; then
+        _rsync_dir "$default_sounds" "$SOUNDS_DIR"
+    fi
+
+    # ── Step 2: overlay the target pack (partial packs OK) ────────────────
     local resolved
     resolved="$(python3 -c "import os; print(os.path.realpath('$pack_sounds_dir'))" 2>/dev/null || echo "$pack_sounds_dir")"
 
@@ -72,11 +92,9 @@ apply_pack_sounds() {
         die "Pack sounds directory not found: $resolved"
     fi
 
-    # rsync: copy only files present in the pack, preserve existing files not in pack
-    if command -v rsync &>/dev/null; then
-        rsync -a --no-whole-file "$resolved/" "$SOUNDS_DIR/"
-    else
-        cp -rn "$resolved/" "$SOUNDS_DIR/"
+    # Skip overlay if the target IS the default (already done above)
+    if [[ "$resolved" != "$default_sounds" ]]; then
+        _rsync_dir "$resolved" "$SOUNDS_DIR"
     fi
 }
 
