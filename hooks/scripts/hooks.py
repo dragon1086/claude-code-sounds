@@ -144,6 +144,14 @@ def play_sound(sound_name):
         # No audio player available - fail silently
         return False
 
+    # Prevent afplay pile-up: kill any running afplay processes before playing
+    # a new sound, so only one sound plays at a time and coreaudiod isn't overwhelmed.
+    if audio_player[0] == "afplay":
+        try:
+            subprocess.run(["pkill", "afplay"], stderr=subprocess.DEVNULL)
+        except Exception:
+            pass
+
     # Build candidate sound directories in priority order:
     #   1. Project-local override: $CLAUDE_PROJECT_DIR/.claude/hooks/sounds/
     #      (user drops files here to override plugin defaults, or claude-sounds use copies here)
