@@ -33,9 +33,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE="$SCRIPT_DIR/hooks"
 
 # Copy hooks/
-if [[ -d "$TARGET" && "$FORCE" -eq 0 ]]; then
-  echo "Warning: $TARGET already exists. Use --force to overwrite."
-  exit 1
+if [[ -d "$TARGET" ]]; then
+  if [[ "$FORCE" -eq 0 ]]; then
+    echo "Warning: $TARGET already exists. Use --force to overwrite."
+    exit 1
+  fi
+  rm -rf "$TARGET"
 fi
 
 echo "Installing claude-code-sounds into $TARGET ..."
