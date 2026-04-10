@@ -47,6 +47,10 @@ Iconic Japanese voice lines from *Kimetsu no Yaiba*, matched to every Claude Cod
 | `elicitation` | 炭治郎 Tanjiro | 一つ教えていただけますか？ | *Could you teach me one thing?* — Asking for input |
 | `elicitationresult` | 炭治郎 Tanjiro | そうか！わかりました！ | *I see! Understood!* — Got the answer |
 
+## Contribute
+
+> **Note:** This pack was assembled by someone who knows Claude Code better than Kimetsu no Yaiba. The voice line choices and character assignments are a best guess — if you're a fan who can do better, **please open a PR!** Better dialogue mappings, more authentic Japanese lines, or higher-quality audio clips are all very welcome.
+
 ## Audio Sources
 
 Audio clips sourced from fan soundboards and community resources:
