@@ -57,3 +57,7 @@ npm-debug.log*
 .env
 .env.*
 !.env.example
+
+# Sound pack generation artifacts
+packs/*/.voice_ids.json
+scripts/__pycache__/
