@@ -4,7 +4,8 @@ These packs are included with claude-code-sounds and ready to use immediately.
 
 | Pack | Description | Voices | Usage |
 |------|-------------|--------|-------|
-| `onepiece` | One Piece character voice pack — iconic Japanese quotes from Luffy, Zoro, Robin, Franky, and more | 10 AI-generated character voices | `claude-sounds use onepiece` |
+| `onepiece` | One Piece character voice pack — iconic Japanese quotes from Luffy, Zoro, Robin, Franky, and more **(default)** | 10 AI-generated character voices | `claude-sounds use onepiece` |
+| `best-practice` | ElevenLabs generated voice pack from claude-code-best-practice | ElevenLabs TTS | `claude-sounds use best-practice` |
 
 ---
 
