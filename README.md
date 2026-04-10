@@ -56,13 +56,17 @@ Then restart Claude Code. This copies hooks into `.claude/hooks/` and registers 
 
 ---
 
-### Option B — curl (git-clone approach)
+### Option B — curl (project scope)
+
+Installs into the current project's `.claude/hooks/`. Run from inside a project directory. Repeat for each project you want sounds in.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/dragon1086/claude-code-sounds/main/install.sh | bash
 ```
 
-### Option C — Manual clone
+### Option C — Manual clone (project scope)
+
+Same as Option B — installs into the current project only.
 
 ```bash
 git clone https://github.com/dragon1086/claude-code-sounds
@@ -89,6 +93,47 @@ All 27 Claude Code hook events are wired, plus 6 agent-scoped events:
 | Context | `PreCompact`, `PostCompact`, `InstructionsLoaded`, `ConfigChange` |
 | Environment | `CwdChanged`, `FileChanged`, `WorktreeCreate`, `WorktreeRemove` |
 | MCP | `Elicitation`, `ElicitationResult` |
+
+## Sound Packs
+
+Switch all sounds at once using the `claude-sounds.sh use` command. This is the only way to switch packs — `activePack` in `hooks-config.json` is a tracking label only and does not affect which sounds are played.
+
+### Available packs
+
+| Pack | Description |
+|------|-------------|
+| `onepiece` | Real One Piece anime voices — Luffy, Zoro, Robin and more |
+| `best-practice` | ElevenLabs "Samara X" voice — ported from claude-code-best-practice |
+| `silent` | 100ms silence — disables all sounds without removing hooks |
+| `default` | Minimal default sound set |
+
+### Switching packs
+
+**Plugin marketplace (user scope) — most common:**
+
+```bash
+bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh" | sort -V | tail -1)" use onepiece
+```
+
+No reinstall needed. The change takes effect immediately.
+
+**install.sh / manual clone:**
+
+```bash
+# Step 1: switch the pack in the repo
+./claude-sounds.sh use onepiece
+
+# Step 2: re-apply to your project
+./install.sh --force
+```
+
+To see which pack is currently active: `./claude-sounds.sh current`
+
+To list all available packs: `./claude-sounds.sh list`
+
+### Community packs
+
+See [PACKS.md](PACKS.md) for community-contributed packs. To contribute your own, see [packs/README.md](packs/README.md).
 
 ## Customize Sounds
 
@@ -120,7 +165,7 @@ Each pattern needs a matching file in `sounds/pretooluse/pretooluse-{name}.wav`.
 
 ## Disable Hooks
 
-Create `.claude/hooks/config/hooks-config.local.json` (git-ignored):
+To disable individual hooks without uninstalling, create `.claude/hooks/config/hooks-config.local.json` (git-ignored):
 
 ```json
 {
@@ -129,21 +174,7 @@ Create `.claude/hooks/config/hooks-config.local.json` (git-ignored):
 }
 ```
 
-See `hooks/config/hooks-config.local.json.example` for all options.
-
-## Sound Packs
-
-Switch all sounds at once:
-
-```bash
-# built-in packs
-claude-sounds use silent    # disables all sounds without removing hooks
-
-# community packs (external GitHub repos)
-claude-sounds use https://github.com/someone/star-trek-sounds
-```
-
-See [PACKS.md](PACKS.md) for community packs. To contribute a pack, see [packs/README.md](packs/README.md).
+See `hooks/config/hooks-config.local.json.example` for all available options.
 
 ## Agent Sounds
 

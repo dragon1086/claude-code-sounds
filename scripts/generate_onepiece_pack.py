@@ -30,51 +30,63 @@ VOICE_IDS_FILE = PACK_DIR / ".voice_ids.json"   # 생성된 Voice ID 캐시 (git
 # 캐릭터별 ElevenLabs Voice Design 프롬프트
 CHARACTER_VOICES = {
     "luffy": {
-        "description": "Energetic young male voice, rough and carefree tone, enthusiastic shounen anime protagonist, slightly hoarse, Japanese-style speech patterns, loud and expressive",
+        # 田中真弓 스타일: 여성 성우가 연기하는 소년 목소리, 거칠고 에너지 넘침
+        "description": "Young boy voice performed by a female voice actress in classic Japanese anime style, very rough and raspy texture, extremely energetic and carefree, shouts with wild enthusiasm, slightly hoarse from constant yelling, rubbery loose quality, exaggerated vowels, zero hesitation, pure raw passion like a shounen protagonist screaming attack names",
         "name": "OP-Luffy",
     },
     "zoro": {
-        "description": "Stoic deep calm male voice, serious and reserved, samurai-like, minimal words, low pitch, speaks rarely but with conviction",
+        # 中井和哉 스타일: 낮고 거친 남성 목소리, 과묵하고 결연함
+        "description": "Deep gruff adult male voice, extremely low pitch, rough gravelly texture, samurai warrior energy, speaks only when necessary with absolute conviction, stoic and unyielding, no warmth or humor, heavy deliberate pacing, the voice of someone who has survived countless near-death battles",
         "name": "OP-Zoro",
     },
     "franky": {
-        "description": "Loud boisterous energetic male voice, robot-cyborg-like, over-enthusiastic, dramatic, loves exclamation",
+        # 矢尾一樹 스타일: 매우 크고 과장된, 사이보그 느낌
+        "description": "Extremely loud boisterous adult male voice, over-the-top exaggerated anime style, bombastic and theatrical, cyborg robot-like metallic edge, shouts SUPER with explosive enthusiasm, very wide dynamic range from normal speech to sudden yelling, flamboyant and dramatic, American-delinquent-turned-cyborg energy",
         "name": "OP-Franky",
     },
     "robin": {
-        "description": "Calm intelligent mature female voice, soft-spoken, scholarly and slightly mysterious, elegant and composed",
+        # 山口由里子 스타일: 차분하고 성숙한 여성, 약간 어두운 저음
+        "description": "Calm sophisticated adult female voice, low and slightly husky for a woman, measured and deliberate speech, scholarly and mysterious undertone, emotionally restrained but with hidden depth, elegant and composed, the kind of voice that says terrifying things in a gentle matter-of-fact tone",
         "name": "OP-Robin",
     },
     "shanks": {
-        "description": "Warm confident mature male voice, legendary aura, gentle but powerful, wise and composed",
+        # 池田秀一 스타일: 따뜻하고 카리스마 있는 성숙한 남성
+        "description": "Warm charismatic adult male voice, mid-to-low pitch with natural authority, legendary pirate captain energy, deeply reassuring yet powerful, speaks with unhurried confidence, gentle smile in the voice, the kind of person whose calm words carry the weight of mountains",
         "name": "OP-Shanks",
     },
     "sanji": {
-        "description": "Cool suave male voice, dramatic and chivalrous, slightly over-the-top, charming and passionate",
+        # 平田広明 스타일: 쿨하고 세련된 남성, 로맨틱하고 극적
+        "description": "Cool suave adult male voice, smooth and slightly smoky texture, chivalrous and dramatic, passionate intensity when speaking of women or cooking, effortlessly stylish, slight French-inspired flair, can shift instantly from composed to fiery, the voice of a chef who is also a deadly martial artist",
         "name": "OP-Sanji",
     },
     "usopp": {
-        "description": "Cowardly but brave young male voice, over-dramatic storyteller, panicky at first then heroic, comedic timing",
+        # 山口勝平 스타일: 극적이고 코믹한 젊은 남성, 겁쟁이이지만 영웅적
+        "description": "Young adult male voice, highly expressive and comedic, starts sentences with exaggerated fear and panic then pivots to dramatic heroic proclamations, storyteller energy, slightly nasally, wide pitch range for comedic effect, the voice of someone who is terrified but forces himself to be brave anyway",
         "name": "OP-Usopp",
     },
     "brook": {
-        "description": "Old theatrical male voice, ghostly eccentric skeleton musician, laughs with Yohoho, dramatic and whimsical",
+        # チョー 스타일: 나이 든 연극적인 남성, 유령 같고 기이함
+        "description": "Elderly theatrical male voice, slightly ghostly and hollow quality, old-fashioned formal Japanese speech patterns, dramatic pauses before punchlines, whimsical and eccentric, warm despite the eerie undertone, the voice of a skeleton musician who has been alone for fifty years and now laughs at his own death jokes",
         "name": "OP-Brook",
     },
     "chopper": {
-        "description": "Cute high-pitched innocent voice, small earnest and sweet character, slightly squeaky, kind and gentle tone",
+        # 大谷育江 스타일: 매우 높은 여성 목소리로 연기하는 어린 캐릭터
+        "description": "Very high-pitched childlike voice performed by a female voice actress, tiny and innocent, earnest and sincere, easily flustered and excited, squeaky when surprised, gentle and kind-hearted, the voice of a small fluffy creature who is secretly a genius doctor but still acts like a child getting praised",
         "name": "OP-Chopper",
     },
     "nami": {
-        "description": "Sharp assertive young female voice, practical navigator, slightly bossy and confident, direct",
+        # 岡村明美 스타일: 날카롭고 자신감 있는 젊은 여성
+        "description": "Sharp assertive young adult female voice, bright and clear tone, practical and no-nonsense delivery, can shift instantly from friendly to scolding, slightly whiny when complaining about money, confident navigator energy, the voice of someone who is both the brains of the crew and perfectly willing to hit everyone when they're being idiots",
         "name": "OP-Nami",
     },
     "whitebeard": {
-        "description": "Massive deep booming male voice, legendary elder pirate king, powerful and commanding, gravelly",
+        # 内海賢二 스타일: 매우 낮고 거대한 목소리, 황제의 위엄
+        "description": "Massively deep booming elderly male voice, the lowest possible pitch range, enormous gravelly resonance that feels like the earth shaking, slow powerful cadence, absolute authority with no need to raise his voice, the legendary voice of someone called the strongest man in the world, speaks with finality",
         "name": "OP-Whitebeard",
     },
     "roger": {
-        "description": "Legendary charismatic male voice, the original pirate king, adventurous and magnetic, historically grand",
+        # 키타무라 에리코 / 오가타 켄이치 스타일: 카리스마 넘치는 전설의 해적왕
+        "description": "Charismatic legendary adult male voice, adventurous and magnetic, bold and fearless, laughs easily with genuine joy, the voice of someone who conquered the entire world and finds it all a grand adventure, historically grand and mythic quality, speaks as if every word is an invitation to the greatest journey imaginable",
         "name": "OP-Roger",
     },
 }
@@ -88,7 +100,7 @@ EVENTS = {
     "pretooluse":         ("luffy",      "ゴムゴムの…！"),
     "posttooluse":        ("franky",     "改造完了！スーパー！"),
     "posttoolusefailure": ("zoro",       "背中の傷は剣士の恥だ"),
-    "userpromptsubmit":   ("luffy",      "おれは助けてもらわねェと生きていけねェ自信がある！"),
+    "userpromptsubmit":   ("luffy",      "仲間がいるよ！！！"),
     "notification":       ("usopp",      "今からおれが伝説のヒーローになってやる！"),
     "permissionrequest":  ("sanji",      "たとえ死んでもおれは女は蹴らん！"),
     "permissiondenied":   ("luffy",      "この海で一番自由な奴が海賊王だ！"),

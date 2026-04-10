@@ -50,6 +50,13 @@ npm-debug.log*
 # ── Installer artifacts ────────────────────────────────────────────────────────
 # Don't ignore installed .claude/ — that lives in user projects, not this repo
 
+# ── Local experiments / candidate audio clips ─────────────────────────────────
+docs/candidates/
+tasks/
+
+# ── Local plugin install (this repo used as its own test project) ──────────────
+.claude/
+
 # ── OMC internal state ─────────────────────────────────────────────────────────
 .omc/
 

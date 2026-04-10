@@ -17,7 +17,7 @@
 
 </div>
 
-네이티브 훅 시스템으로 구동되는 Claude Code 라이프사이클 이벤트별 오디오 피드백 — 실제 ElevenLabs로 생성된 음성 파일과 함께 제공됩니다. 파일 하나를 교체하는 것만으로 원하는 소리로 바꿀 수 있습니다.
+Claude Code가 작업할 때마다 소리로 알려주는 플러그인입니다. 세션 시작, 파일 수정, 작업 완료 등 27가지 이벤트에 효과음이 연결되어 있어요. 기본 팩은 원피스 애니메이션 음성으로 구성되어 있고, 설정 파일 하나만 바꾸면 다른 팩으로 전환할 수 있습니다.
 
 ## 동작 방식
 
@@ -25,56 +25,150 @@
   <img src="docs/assets/flow.png" alt="How claude-code-sounds works" width="700" />
 </div>
 
+Claude Code의 훅(hook) 시스템을 이용해서, 특정 이벤트가 발생할 때마다 Python 스크립트가 실행되어 소리를 재생합니다. 별도 데몬이나 백그라운드 프로세스 없이 동작해요.
+
 ## 설치
 
 ### 방법 A — 플러그인 마켓플레이스 (권장)
+
+Claude Code 채팅창에서 아래 명령어를 입력하세요:
 
 ```
 /plugin marketplace add https://github.com/dragon1086/claude-code-sounds
 /plugin install claude-code-sounds
 ```
 
-스콥 선택 시:
+스콥 선택 화면이 나타나면:
 
 | 선택 | 동작 |
 |------|------|
-| **user (global)** ✅ | 모든 프로젝트에서 자동으로 소리 남 |
-| project | 소리 안 남 — 프로젝트마다 `setup-project` 한 번 실행 필요 (아래 참조) |
-| local | project와 동일하나 git 제외 (개인 설정용) — `setup-project` 필요 |
+| **user (global)** ✅ | 모든 프로젝트에서 자동으로 소리가 납니다 — 이걸 추천해요 |
+| project | 이 프로젝트에서만 사용 — 아래 추가 설정 필요 |
+| local | project와 같지만 git에 포함되지 않음 (개인 설정용) — 추가 설정 필요 |
 
-> **설치 후:** 훅 활성화를 위해 Claude Code를 재시작하세요.
+> **설치 후:** Claude Code를 재시작해야 훅이 활성화됩니다.
 
-#### project 스콥 설치 시 추가 설정
+#### project/local 스콥으로 설치한 경우
 
-project 스콥으로 설치한 경우, 해당 프로젝트 안에서 한 번 실행:
+프로젝트 폴더 안에서 아래 명령어를 한 번 실행하세요:
 
 ```bash
 bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh" | head -1)" setup-project
 ```
 
-Claude Code 재시작 후 소리가 납니다. 이 명령어는 hooks를 `.claude/hooks/`에 복사하고 `.claude/settings.json`에 등록해요.
+그 후 Claude Code를 재시작하면 소리가 납니다. 이 명령어는 훅 파일을 `.claude/hooks/`에 복사하고 `.claude/settings.json`에 등록해줍니다.
 
 ---
 
-### 방법 B — curl
+### 방법 B — curl 한 줄 설치 (project 스콥)
+
+현재 프로젝트의 `.claude/hooks/`에 설치됩니다. 프로젝트 디렉토리 안에서 실행하세요. 소리를 사용하고 싶은 프로젝트마다 반복 실행이 필요합니다.
+
+터미널에서 바로 실행할 수 있어요:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/dragon1086/claude-code-sounds/main/install.sh | bash
 ```
 
-### 방법 C — 직접 클론
+### 방법 C — 직접 클론 (project 스콥)
+
+방법 B와 동일하게 현재 프로젝트에만 설치됩니다.
 
 ```bash
 git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-> **설치 후:** 훅 활성화를 위해 Claude Code를 재시작하세요.
+> **설치 후:** Claude Code를 재시작해야 훅이 활성화됩니다.
 
 ## 요구 사항
 
 - Python 3
 - macOS (`afplay`), Linux (`paplay` / `aplay` / `ffplay`), 또는 Windows (내장 `winsound`)
+
+별도 라이브러리 설치는 필요 없어요.
+
+## 사운드 팩 전환
+
+`claude-sounds.sh use` 명령어로 모든 소리를 한 번에 바꿀 수 있어요. 팩을 바꾸는 방법은 이것뿐입니다. `hooks-config.json`의 `activePack`은 마지막으로 적용된 팩을 표시해주는 레이블일 뿐이고, 실제로 어떤 소리가 재생될지에는 영향을 주지 않아요.
+
+### 기본 제공 팩
+
+| 팩 이름 | 설명 |
+|---------|------|
+| `onepiece` | 원피스 애니메이션 실제 음성 — 루피, 조로, 로빈 등의 명장면 |
+| `best-practice` | ElevenLabs "Samara X" 음성 — claude-code-best-practice 프로젝트에서 가져온 팩 |
+| `silent` | 100ms 무음 — 훅을 제거하지 않고 소리만 끄고 싶을 때 |
+| `default` | 기본 효과음 세트 |
+
+### 팩 바꾸는 방법
+
+**플러그인 마켓플레이스 (user 스콥) — 가장 일반적인 경우:**
+
+```bash
+bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh" | sort -V | tail -1)" use onepiece
+```
+
+재설치 없이 바로 적용됩니다.
+
+**install.sh / 직접 클론한 경우:**
+
+```bash
+# 1단계: 리포지토리에서 팩 전환
+./claude-sounds.sh use onepiece
+
+# 2단계: 프로젝트에 다시 적용
+./install.sh --force
+```
+
+현재 적용된 팩 확인: `./claude-sounds.sh current`
+
+사용 가능한 팩 목록 보기: `./claude-sounds.sh list`
+
+### 커뮤니티 팩
+
+다른 사용자들이 만든 팩은 [PACKS.md](PACKS.md)에서 확인할 수 있어요. 직접 팩을 만들어 기여하고 싶다면 [packs/README.md](packs/README.md)를 참고하세요.
+
+## 소리 직접 바꾸기
+
+특정 이벤트의 소리만 바꾸고 싶다면 `.claude/hooks/sounds/{이벤트명}/` 폴더의 파일을 교체하면 됩니다:
+
+```
+.claude/hooks/sounds/stop/
+└── stop.wav   ← 이 파일을 원하는 소리로 교체하세요
+```
+
+파일 이름은 반드시 폴더 이름과 같아야 합니다. `.wav`와 `.mp3` 모두 지원되며, `.wav`를 먼저 찾습니다.
+
+### 특수 기능: Bash 명령어별 소리
+
+특정 bash 명령어에 전용 소리를 지정할 수 있어요. 예를 들어 `git commit` 실행 시 일반 `pretooluse.wav` 대신 `pretooluse-git-committing.wav`를 재생합니다.
+
+`hooks.py`에서 패턴을 추가하세요:
+
+```python
+BASH_PATTERNS = [
+    (r'git commit', "pretooluse-git-committing"),  # 기본 포함
+    (r'npm test',   "pretooluse-npm-testing"),      # 직접 추가
+    (r'rm -rf',     "pretooluse-danger"),
+    (r'git push',   "pretooluse-git-pushing"),
+]
+```
+
+각 패턴에는 `sounds/pretooluse/pretooluse-{이름}.wav` 파일이 필요합니다.
+
+## 특정 훅 끄기
+
+전체 제거 없이 일부 훅만 끄고 싶다면 `.claude/hooks/config/hooks-config.local.json` 파일을 만드세요 (git에서 자동으로 무시됩니다):
+
+```json
+{
+  "disablePostToolUseHook": true,
+  "disableLogging": true
+}
+```
+
+사용 가능한 모든 옵션은 `hooks/config/hooks-config.local.json.example` 파일을 참고하세요.
 
 ## 훅 커버리지
 
@@ -90,64 +184,9 @@ cd claude-code-sounds && ./install.sh
 | 환경 | `CwdChanged`, `FileChanged`, `WorktreeCreate`, `WorktreeRemove` |
 | MCP | `Elicitation`, `ElicitationResult` |
 
-## 소리 커스터마이즈
+## 에이전트별 소리 설정
 
-`.claude/hooks/sounds/{event}/` 내의 파일을 교체하세요:
-
-```
-.claude/hooks/sounds/stop/
-└── stop.wav   ← 이 파일을 원하는 소리로 교체하세요
-```
-
-파일 이름은 폴더 이름과 일치해야 합니다. `.wav`와 `.mp3` 모두 지원됩니다 (`.wav`를 먼저 시도합니다).
-
-### 특수 기능: Bash 명령 패턴
-
-특정 bash 명령은 전용 소리를 재생합니다. 예를 들어, `git commit`은 일반적인 `pretooluse.wav` 대신 `pretooluse-git-committing.wav`를 재생합니다.
-
-`hooks.py`에서 직접 패턴을 추가할 수 있습니다:
-
-```python
-BASH_PATTERNS = [
-    (r'git commit', "pretooluse-git-committing"),  # 기본 포함
-    (r'npm test',   "pretooluse-npm-testing"),      # 직접 추가
-    (r'rm -rf',     "pretooluse-danger"),
-    (r'git push',   "pretooluse-git-pushing"),
-]
-```
-
-각 패턴에는 `sounds/pretooluse/pretooluse-{name}.wav`에 대응하는 파일이 필요합니다.
-
-## 훅 비활성화
-
-`.claude/hooks/config/hooks-config.local.json` 파일을 생성하세요 (git에서 무시됨):
-
-```json
-{
-  "disablePostToolUseHook": true,
-  "disableLogging": true
-}
-```
-
-모든 옵션은 `hooks/config/hooks-config.local.json.example`을 참고하세요.
-
-## 사운드 팩
-
-모든 소리를 한 번에 교체합니다:
-
-```bash
-# 내장 팩
-claude-sounds use silent    # 훅을 제거하지 않고 모든 소리를 비활성화
-
-# 커뮤니티 팩 (외부 GitHub 저장소)
-claude-sounds use https://github.com/someone/star-trek-sounds
-```
-
-커뮤니티 팩은 [PACKS.md](PACKS.md)를 참고하세요. 팩을 기여하려면 [packs/README.md](packs/README.md)를 참고하세요.
-
-## 에이전트 소리
-
-서브에이전트 세션은 다른 소리를 재생할 수 있습니다. 에이전트 프론트매터에 훅을 연결하세요:
+서브에이전트 세션에 다른 소리를 지정할 수 있습니다. 에이전트 프론트매터에 훅을 추가하세요:
 
 ```yaml
 ---
@@ -166,7 +205,7 @@ hooks:
 ---
 ```
 
-사운드 파일은 `agent_pretooluse/`, `agent_stop/` 등에 저장합니다.
+에이전트 전용 사운드 파일은 `agent_pretooluse/`, `agent_stop/` 등의 폴더에 저장합니다.
 
 ## 제거
 
@@ -176,7 +215,7 @@ hooks:
 
 ## 크레딧
 
-[shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice)에서 영감을 받아 제작되었습니다. 이 프로젝트는 Claude Code hooks에 오디오 피드백을 연결하는 아이디어를 독립적인 플러그인으로 발전시킨 것입니다.
+Claude Code hooks에 오디오 피드백을 연결한다는 아이디어는 [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice)에서 영감을 받았습니다. 이 프로젝트는 그 아이디어를 독립적인 플러그인으로 발전시켜, 전체 훅 커버리지와 사운드 팩, 크로스 플랫폼 지원을 추가한 버전입니다.
 
 ## 라이선스
 

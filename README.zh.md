@@ -17,7 +17,7 @@
 
 </div>
 
-为每一个 Claude Code 生命周期事件提供音频反馈 —— 由原生钩子系统驱动。内置真实的 ElevenLabs 生成语音文件。替换一个文件即可自定义任意音效。
+Claude Code 每次执行操作时都会有声音提示的插件。会话开始、文件修改、任务完成等 27 种事件都有对应的音效。默认使用海贼王动漫语音，只需修改一个配置文件即可切换到其他音效包。
 
 ## 工作原理
 
@@ -25,9 +25,13 @@
   <img src="docs/assets/flow.png" alt="How claude-code-sounds works" width="700" />
 </div>
 
+利用 Claude Code 的钩子（hook）系统，在特定事件触发时运行 Python 脚本播放声音。无需额外的守护进程或后台服务。
+
 ## 安装
 
 ### 方式 A — 插件市场（推荐）
+
+在 Claude Code 聊天窗口中输入以下命令：
 
 ```
 /plugin marketplace add https://github.com/dragon1086/claude-code-sounds
@@ -38,31 +42,35 @@
 
 | 选项 | 效果 |
 |------|------|
-| **user (global)** ✅ | 所有项目自动播放声音 |
-| project | 无声音 — 需在每个项目中运行一次 `setup-project`（见下文） |
-| local | 与 project 相同，但不纳入 git（个人配置）— 同样需要 `setup-project` |
+| **user (global)** ✅ | 所有项目自动播放声音 — 推荐选这个 |
+| project | 仅在此项目中使用 — 需要额外设置（见下文） |
+| local | 与 project 相同，但不纳入 git（个人配置用）— 同样需要额外设置 |
 
 > **安装后：** 重启 Claude Code 以激活钩子。
 
-#### project 范围修复
+#### 选择 project/local 范围后的额外设置
 
-若已选择 project 范围，在项目目录内运行一次：
+在项目目录内运行一次：
 
 ```bash
 bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh" | head -1)" setup-project
 ```
 
-重启 Claude Code 后即可播放声音。
+重启 Claude Code 后即可播放声音。该命令会将钩子文件复制到 `.claude/hooks/` 并注册到 `.claude/settings.json`。
 
 ---
 
-### 方式 B — curl
+### 方式 B — curl 一键安装（project 范围）
+
+安装到当前项目的 `.claude/hooks/` 目录。请在项目目录内运行。每个需要声音的项目都需要单独安装。
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/dragon1086/claude-code-sounds/main/install.sh | bash
 ```
 
-### 方式 C — 手动克隆
+### 方式 C — 手动克隆（project 范围）
+
+与方式 B 相同，仅安装到当前项目。
 
 ```bash
 git clone https://github.com/dragon1086/claude-code-sounds
@@ -75,6 +83,90 @@ cd claude-code-sounds && ./install.sh
 
 - Python 3
 - macOS（`afplay`）、Linux（`paplay` / `aplay` / `ffplay`）或 Windows（内置 `winsound`）
+
+无需安装额外的第三方库。
+
+## 切换音效包
+
+使用 `claude-sounds.sh use` 命令一次性切换所有音效。这是切换音效包的唯一方式 — `hooks-config.json` 中的 `activePack` 只是显示上次应用了哪个包的标签，不影响实际播放的音效。
+
+### 内置音效包
+
+| 包名 | 说明 |
+|------|------|
+| `onepiece` | 海贼王真实动漫语音 — 路飞、索隆、罗宾等经典场景 |
+| `best-practice` | ElevenLabs "Samara X" 语音 — 来自 claude-code-best-practice 项目 |
+| `silent` | 100ms 静音 — 不删除钩子的情况下关闭所有声音 |
+| `default` | 默认基础音效 |
+
+### 切换方法
+
+**插件市场（user 范围）— 最常见的情况：**
+
+```bash
+bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh" | sort -V | tail -1)" use onepiece
+```
+
+无需重新安装，立即生效。
+
+**install.sh / 手动克隆的情况：**
+
+```bash
+# 第一步：在仓库中切换音效包
+./claude-sounds.sh use onepiece
+
+# 第二步：重新应用到项目
+./install.sh --force
+```
+
+查看当前使用的音效包：`./claude-sounds.sh current`
+
+列出所有可用音效包：`./claude-sounds.sh list`
+
+### 社区音效包
+
+更多由社区贡献的音效包请查看 [PACKS.md](PACKS.md)。想要贡献自己的音效包，请参考 [packs/README.md](packs/README.md)。
+
+## 自定义单个音效
+
+如果只想修改某个事件的声音，替换 `.claude/hooks/sounds/{事件名}/` 目录下的文件即可：
+
+```
+.claude/hooks/sounds/stop/
+└── stop.wav   ← 用你的音效文件替换这个
+```
+
+文件名必须与文件夹名一致。支持 `.wav` 和 `.mp3` 格式（优先使用 `.wav`）。
+
+### 特殊功能：Bash 命令专属音效
+
+可以为特定 bash 命令指定专属音效。例如执行 `git commit` 时，会播放 `pretooluse-git-committing.wav` 而不是通用的 `pretooluse.wav`。
+
+在 `hooks.py` 中添加自定义模式：
+
+```python
+BASH_PATTERNS = [
+    (r'git commit', "pretooluse-git-committing"),  # 默认包含
+    (r'npm test',   "pretooluse-npm-testing"),      # 自定义添加
+    (r'rm -rf',     "pretooluse-danger"),
+    (r'git push',   "pretooluse-git-pushing"),
+]
+```
+
+每个模式需要在 `sounds/pretooluse/pretooluse-{名称}.wav` 中有对应文件。
+
+## 禁用特定钩子
+
+无需卸载，只想关闭部分钩子时，创建 `.claude/hooks/config/hooks-config.local.json` 文件（git 自动忽略）：
+
+```json
+{
+  "disablePostToolUseHook": true,
+  "disableLogging": true
+}
+```
+
+所有可用选项请参见 `hooks/config/hooks-config.local.json.example`。
 
 ## 钩子覆盖范围
 
@@ -90,62 +182,7 @@ cd claude-code-sounds && ./install.sh
 | 环境 | `CwdChanged`, `FileChanged`, `WorktreeCreate`, `WorktreeRemove` |
 | MCP | `Elicitation`, `ElicitationResult` |
 
-## 自定义音效
-
-替换 `.claude/hooks/sounds/{event}/` 中的任意文件：
-
-```
-.claude/hooks/sounds/stop/
-└── stop.wav   ← 用你自己的音效替换这个文件
-```
-
-文件名必须与文件夹名一致。支持 `.wav` 和 `.mp3` 格式（优先尝试 `.wav`）。
-
-### 特殊：Bash 命令模式
-
-特定 bash 命令会触发专属音效。例如，`git commit` 会播放 `pretooluse-git-committing.wav` 而不是通用的 `pretooluse.wav`。
-
-在 `hooks.py` 中添加自定义模式：
-
-```python
-BASH_PATTERNS = [
-    (r'git commit', "pretooluse-git-committing"),  # 默认包含
-    (r'npm test',   "pretooluse-npm-testing"),      # 添加自定义
-    (r'rm -rf',     "pretooluse-danger"),
-    (r'git push',   "pretooluse-git-pushing"),
-]
-```
-
-每个模式需要在 `sounds/pretooluse/pretooluse-{name}.wav` 中有对应的文件。
-
-## 禁用钩子
-
-创建 `.claude/hooks/config/hooks-config.local.json`（已加入 git 忽略列表）：
-
-```json
-{
-  "disablePostToolUseHook": true,
-  "disableLogging": true
-}
-```
-
-所有可用选项请参见 `hooks/config/hooks-config.local.json.example`。
-
-## 音效包
-
-一键切换所有音效：
-
-```bash
-# 内置音效包
-claude-sounds use silent    # 在不移除钩子的情况下禁用所有音效
-
-# 社区音效包（外部 GitHub 仓库）
-claude-sounds use https://github.com/someone/star-trek-sounds
-```
-
-社区音效包请参见 [PACKS.md](PACKS.md)。如需贡献音效包，请参见 [packs/README.md](packs/README.md)。
-
-## Agent 音效
+## Agent 专属音效
 
 子 Agent 会话可以播放不同的音效。在 agent frontmatter 中接入钩子：
 
@@ -176,7 +213,7 @@ hooks:
 
 ## 致谢
 
-本项目受 [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) 启发，该项目首次展示了将音频反馈集成到 Claude Code hooks 的方法。本项目将这一想法提炼为独立的可安装插件，支持全量 hook 事件、音效包和跨平台。
+本项目受 [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) 启发，该项目首次展示了将音频反馈集成到 Claude Code hooks 的方法。本项目将这一想法提炼为独立的可安装插件，支持全量 hook 事件、音效包和跨平台运行。
 
 ## 许可证
 
