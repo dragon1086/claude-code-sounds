@@ -1,7 +1,7 @@
 {
   "name": "default",
   "author": "claude-code-sounds",
-  "description": "Default One Piece character voice pack — ships with the plugin",
+  "description": "Default voice pack based on best-practice — ElevenLabs generated sounds, ships with the plugin",
   "license": "MIT",
   "preview_url": ""
 }
