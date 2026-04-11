@@ -25,7 +25,7 @@
 
 <br>
 
-## **✦ Haz que tu IA suene a ti. ✦**
+## **✦ Donde el gusto entra en la IA. ✦**
 
 <br>
 </div>

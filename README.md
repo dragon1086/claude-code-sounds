@@ -25,7 +25,7 @@
 
 <br>
 
-## **✦ Make your AI sound like you. ✦**
+## **✦ Where your AI gets taste. ✦**
 
 <br>
 </div>
