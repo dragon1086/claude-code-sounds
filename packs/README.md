@@ -130,7 +130,7 @@ Only submit audio you have the right to distribute. Accepted licenses: MIT, CC B
 |------|-------------|
 | `onepiece` | **[Flagship]** Real One Piece anime voices — Luffy, Zoro, Robin, Franky, Brook and more |
 | `faker` | T1 Faker (이상혁) voice pack — ElevenLabs IVC |
-| `kimetsu` | Demon Slayer (鬼滅の刃) — Tanjiro, Rengoku, Zenitsu, Inosuke and more |
+| `kimetsu` | Demon Slayer (鬼滅の刃) — Tanjiro, Rengoku, Zenitsu, Inosuke and more (ElevenLabs TTS) |
 | `best-practice` | ElevenLabs "Samara X" — ported from claude-code-best-practice |
 | `silent` | 100ms silence — disables sounds without removing hooks |
 | `default` | Minimal default sound set |

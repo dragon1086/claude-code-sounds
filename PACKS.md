@@ -15,7 +15,7 @@ These packs are included with claude-code-sounds and ready to use immediately.
 |------|-------------|--------|
 | `onepiece` | **[Flagship]** Real One Piece anime voices — Luffy, Zoro, Robin, Franky, Brook and more | Original anime audio |
 | `faker` | T1 Faker (이상혁) voice pack — IVC cloned via ElevenLabs | ElevenLabs IVC |
-| `kimetsu` | Demon Slayer (鬼滅の刃) — Tanjiro, Rengoku, Zenitsu, Inosuke and more | Original anime audio |
+| `kimetsu` | Demon Slayer (鬼滅の刃) — Tanjiro, Rengoku, Zenitsu, Inosuke and more | ElevenLabs TTS |
 | `best-practice` | ElevenLabs "Samara X" voice — ported from [claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | ElevenLabs TTS |
 | `silent` | 100ms silence — disables all sounds without removing hooks | — |
 | `default` | Minimal default sound set | — |
