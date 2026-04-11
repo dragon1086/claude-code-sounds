@@ -137,9 +137,10 @@ bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh"
 
 사용 가능한 팩 목록 보기: `./claude-sounds.sh list`
 
-### 커뮤니티 팩
+### 커뮤니티 팩 & 팩 기여
 
-다른 사용자들이 만든 팩은 [PACKS.md](PACKS.md)에서 확인할 수 있어요. 직접 팩을 만들어 기여하고 싶다면 [packs/README.md](packs/README.md)를 참고하세요.
+**팩 기여를 환영합니다** — 어떤 테마, 팬덤, 언어든 좋아요.  
+15분 정도면 만들 수 있어요. 단계별 가이드와 커뮤니티 팩 목록은 **[PACKS.md](PACKS.md)** 를 확인하세요.
 
 ## 소리 직접 바꾸기
 

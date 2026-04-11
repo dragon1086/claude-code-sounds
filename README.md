@@ -143,9 +143,10 @@ To see which pack is currently active: `./claude-sounds.sh current`
 
 To list all available packs: `./claude-sounds.sh list`
 
-### Community packs
+### Community packs & contributing
 
-See [PACKS.md](PACKS.md) for community-contributed packs. To contribute your own, see [packs/README.md](packs/README.md).
+**Pack contributions are very welcome** — any theme, any fandom, any language.  
+It takes about 15 minutes. See **[PACKS.md](PACKS.md)** for the step-by-step guide and the list of community packs.
 
 ## Customize Sounds
 
