@@ -17,13 +17,7 @@
 
 </div>
 
-<div align="center">
-
-[![One Piece Sound Pack — Demo](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
-
-</div>
-
-Un plugin que reproduce sonidos cada vez que Claude Code realiza una acción. 27 eventos — inicio de sesión, modificación de archivos, tareas completadas y más — tienen efectos de sonido asignados. El pack predeterminado usa voces del anime One Piece, y puedes cambiar de pack modificando un solo archivo de configuración.
+Un plugin que reproduce sonidos cada vez que Claude Code realiza una acción. 27 eventos — inicio de sesión, modificación de archivos, tareas completadas y más — tienen efectos de sonido asignados. El pack destacado de este proyecto usa voces reales del anime One Piece, y puedes cambiar de pack modificando un solo archivo de configuración.
 
 ## Cómo funciona
 
@@ -104,6 +98,18 @@ Usa el comando `claude-sounds.sh use` para cambiar todos los sonidos a la vez. E
 | `best-practice` | Voz ElevenLabs "Samara X" — portada desde el proyecto claude-code-best-practice |
 | `silent` | 100ms de silencio — desactiva los sonidos sin eliminar los hooks |
 | `default` | Set de efectos de sonido básicos |
+
+### Pack destacado — One Piece
+
+El pack original y emblema de este proyecto. Voces reales del anime One Piece — Luffy, Zoro, Nami, Robin, Franky, Brook y más — cada una asignada a un evento del ciclo de vida de Claude Code.
+
+<div align="center">
+
+[![One Piece Sound Pack — Demo](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
+
+</div>
+
+Ver la lista completa de pistas en [packs/onepiece/](packs/onepiece/).
 
 ### Cómo cambiar de pack
 

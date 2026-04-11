@@ -17,12 +17,6 @@
 
 </div>
 
-<div align="center">
-
-[![One Piece Sound Pack — Demo](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
-
-</div>
-
 Audio feedback for every Claude Code lifecycle event — powered by the native hooks system. Ships with real ElevenLabs-generated voice files. Swap any sound by replacing one file.
 
 ## How it works
@@ -112,6 +106,18 @@ Switch all sounds at once using the `claude-sounds.sh use` command. This is the 
 | `best-practice` | ElevenLabs "Samara X" voice — ported from claude-code-best-practice |
 | `silent` | 100ms silence — disables all sounds without removing hooks |
 | `default` | Minimal default sound set |
+
+### Featured pack — One Piece
+
+The flagship pack of this project. Real anime voices from the One Piece series — Luffy, Zoro, Nami, Robin, Franky, Brook, and more — each matched to a Claude Code lifecycle event.
+
+<div align="center">
+
+[![One Piece Sound Pack — Demo](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
+
+</div>
+
+See [packs/onepiece/](packs/onepiece/) for the full track list.
 
 ### Switching packs
 

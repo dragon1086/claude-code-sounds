@@ -17,13 +17,7 @@
 
 </div>
 
-<div align="center">
-
-[![원피스 사운드팩 — 데모 영상](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
-
-</div>
-
-Claude Code가 작업할 때마다 소리로 알려주는 플러그인입니다. 세션 시작, 파일 수정, 작업 완료 등 27가지 이벤트에 효과음이 연결되어 있어요. 기본 팩은 원피스 애니메이션 음성으로 구성되어 있고, 설정 파일 하나만 바꾸면 다른 팩으로 전환할 수 있습니다.
+Claude Code가 작업할 때마다 소리로 알려주는 플러그인입니다. 세션 시작, 파일 수정, 작업 완료 등 27가지 이벤트에 효과음이 연결되어 있어요. 여러 사운드 팩 중 이 프로젝트의 대표 팩은 원피스 애니메이션 실제 음성으로 구성되어 있으며, 설정 파일 하나만 바꾸면 다른 팩으로 전환할 수 있습니다.
 
 ## 동작 방식
 
@@ -106,6 +100,18 @@ cd claude-code-sounds && ./install.sh
 | `best-practice` | ElevenLabs "Samara X" 음성 — claude-code-best-practice 프로젝트에서 가져온 팩 |
 | `silent` | 100ms 무음 — 훅을 제거하지 않고 소리만 끄고 싶을 때 |
 | `default` | 기본 효과음 세트 |
+
+### 대표 팩 — 원피스
+
+이 프로젝트의 시초이자 대표 팩입니다. 루피, 조로, 나미, 로빈, 프랑키, 브룩 등 원피스 애니메이션의 실제 음성을 Claude Code 이벤트에 매핑했어요.
+
+<div align="center">
+
+[![원피스 사운드팩 — 데모 영상](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
+
+</div>
+
+전체 트랙 목록은 [packs/onepiece/](packs/onepiece/)를 확인하세요.
 
 ### 팩 바꾸는 방법
 
