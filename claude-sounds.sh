@@ -96,6 +96,14 @@ apply_pack_sounds() {
     if [[ "$resolved" != "$default_sounds" ]]; then
         _rsync_dir "$resolved" "$SOUNDS_DIR"
     fi
+
+    # ── Step 3: remove stale WAVs where an MP3 now exists ────────────────
+    # hooks.py checks .wav before .mp3, so leftover default WAVs would
+    # shadow the new pack's MP3s. Clean them up.
+    find "$SOUNDS_DIR" -name "*.mp3" | while read -r mp3; do
+        local wav="${mp3%.mp3}.wav"
+        [[ -f "$wav" ]] && rm -f "$wav"
+    done
 }
 
 # ── Commands ──────────────────────────────────────────────────────────────────
