@@ -97,6 +97,14 @@ All 27 Claude Code hook events you can assign sounds to:
 
 All submissions must be normalized to **-20 LUFS** integrated loudness so volume is consistent across packs.
 
+**Option 1 — use the included script** (recommended, handles two-pass loudnorm automatically):
+
+```bash
+python3 scripts/normalize_audio.py packs/my-pack/sounds/
+```
+
+**Option 2 — ffmpeg manually:**
+
 ```bash
 ffmpeg -i input.wav -af "loudnorm=I=-20:TP=-1.5:LRA=11" output.wav
 ```

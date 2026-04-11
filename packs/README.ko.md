@@ -98,6 +98,14 @@ my-pack/
 
 팩 간 볼륨을 일정하게 유지하기 위해 모든 파일을 **-20 LUFS**로 정규화해 주세요.
 
+**방법 1 — 포함된 스크립트 사용** (권장, 2-pass loudnorm 자동 처리):
+
+```bash
+python3 scripts/normalize_audio.py packs/my-pack/sounds/
+```
+
+**방법 2 — ffmpeg 직접 사용:**
+
 ```bash
 ffmpeg -i input.wav -af "loudnorm=I=-20:TP=-1.5:LRA=11" output.wav
 ```
