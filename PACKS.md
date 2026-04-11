@@ -3,13 +3,17 @@
 ## 🎁 Want to contribute a pack?
 
 **We'd love your pack.** Any theme, any language, any fandom.  
-It takes about 15 minutes — see [How to Contribute](#how-to-contribute-a-pack) below.
+It takes about 15 minutes — full guide in **[packs/README.md](packs/README.md)**.
+
+**Quick steps:**
+1. Create `packs/<name>/` with a `sounds/` subfolder
+2. Drop in your audio files (`.wav` or `.mp3`), normalized to -20 LUFS
+3. Add a `pack.json` (name, author, description, license)
+4. Open a PR — add a row to the [Community Packs](#community-packs) table below
 
 ---
 
 ## Built-in Packs
-
-These packs are included with claude-code-sounds and ready to use immediately.
 
 | Pack | Description | Source |
 |------|-------------|--------|
@@ -31,62 +35,3 @@ Packs created by the community. Open a PR to add yours!
 | Pack | Author | Description | Install |
 |------|--------|-------------|---------|
 | _(be the first!)_ | | | |
-
----
-
-## How to Contribute a Pack
-
-Contributing a pack is straightforward. Here's all you need:
-
-### 1. Create your pack folder
-
-```
-packs/
-└── my-pack/
-    ├── pack.json
-    └── sounds/
-        ├── sessionstart/
-        │   └── sessionstart.wav
-        ├── stop/
-        │   └── stop.wav
-        └── ...
-```
-
-**Partial packs are fine.** You only need to include the events you want to override — missing ones fall back to the `default` pack automatically.
-
-### 2. Write pack.json
-
-```json
-{
-  "name": "my-pack",
-  "author": "your-github-username",
-  "description": "Short description",
-  "license": "MIT",
-  "preview_url": "https://youtube.com/..."
-}
-```
-
-### 3. Normalize audio to -20 LUFS
-
-```bash
-ffmpeg -i input.wav -af "loudnorm=I=-20:TP=-1.5:LRA=11" output.wav
-```
-
-Both `.wav` and `.mp3` are supported (`.wav` is tried first).
-
-### 4. Test your pack
-
-```bash
-./claude-sounds.sh use my-pack
-./install.sh --force
-# restart Claude Code and verify sounds play
-```
-
-### 5. Open a PR
-
-Add a row to the [Community Packs](#community-packs) table above and open a pull request.  
-That's it — we'll review and merge promptly. 🎉
-
----
-
-> See [packs/README.md](packs/README.md) for the full technical reference.
