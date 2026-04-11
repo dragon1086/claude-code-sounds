@@ -17,6 +17,12 @@
 
 </div>
 
+<div align="center">
+
+[![One Piece Sound Pack — Demo](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
+
+</div>
+
 Audio feedback for every Claude Code lifecycle event — powered by the native hooks system. Ships with real ElevenLabs-generated voice files. Swap any sound by replacing one file.
 
 ## How it works

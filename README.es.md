@@ -17,6 +17,12 @@
 
 </div>
 
+<div align="center">
+
+[![One Piece Sound Pack — Demo](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
+
+</div>
+
 Un plugin que reproduce sonidos cada vez que Claude Code realiza una acción. 27 eventos — inicio de sesión, modificación de archivos, tareas completadas y más — tienen efectos de sonido asignados. El pack predeterminado usa voces del anime One Piece, y puedes cambiar de pack modificando un solo archivo de configuración.
 
 ## Cómo funciona

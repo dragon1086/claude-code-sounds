@@ -17,6 +17,12 @@
 
 </div>
 
+<div align="center">
+
+[![원피스 사운드팩 — 데모 영상](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
+
+</div>
+
 Claude Code가 작업할 때마다 소리로 알려주는 플러그인입니다. 세션 시작, 파일 수정, 작업 완료 등 27가지 이벤트에 효과음이 연결되어 있어요. 기본 팩은 원피스 애니메이션 음성으로 구성되어 있고, 설정 파일 하나만 바꾸면 다른 팩으로 전환할 수 있습니다.
 
 ## 동작 방식

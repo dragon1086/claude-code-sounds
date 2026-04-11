@@ -1,5 +1,11 @@
 # One Piece Sound Pack
 
+<div align="center">
+
+[![One Piece Sound Pack — Demo](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
+
+</div>
+
 Real anime voice pack featuring iconic scenes and quotes from One Piece.  
 All clips are sourced from the original anime — not AI-generated voices.
 
@@ -13,7 +19,7 @@ All clips are sourced from the original anime — not AI-generated voices.
 | `posttooluse` | Franky | "SUPER!" |
 | `posttoolusefailure` | Robin | "I want to live!!" |
 | `userpromptsubmit` | Luffy | "Gum-Gum…!" — attack ready |
-| `stop` | Franky | "SUPER!" |
+| `stop` | Robin | Robin's laugh |
 | `stopfailure` | Luffy | Crying out for Ace — peak despair |
 | `notification` | Franky | "AWWW!" |
 | `permissionrequest` | Nami | Crying "Luffy, help me!" |
@@ -25,7 +31,7 @@ All clips are sourced from the original anime — not AI-generated voices.
 | `taskcompleted` | Zoro | Santoryu Ogi: Sanzen Sekai |
 | `teammateidle` | Zoro | "Nothing happened." — stoic after sacrifice |
 | `cwdchanged` | — | One Piece mid-episode scene transition |
-| `filechanged` | Usopp | Usopp Hammer — file modified |
+| `filechanged` | Luffy | "Too slow." — Kenbunshoku Haki already sensed it |
 | `worktreecreate` | Luffy | Luffy's laugh — new adventure! |
 | `worktreeremove` | Brook | Yohohoho — farewell |
 | `precompact` | Dr. Hiluluk | "When do you think a man dies?" |

@@ -27,5 +27,5 @@
   "disableTaskCreatedHook": false,
   "disablePermissionDeniedHook": false,
   "disableLogging": true,
-  "activePack": "best-practice"
+  "activePack": "onepiece"
 }

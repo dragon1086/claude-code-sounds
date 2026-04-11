@@ -17,6 +17,12 @@
 
 </div>
 
+<div align="center">
+
+[![ワンピース サウンドパック — デモ動画](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
+
+</div>
+
 Claude Code が作業するたびに音で知らせてくれるプラグインです。セッション開始・ファイル変更・タスク完了など 27 種類のイベントに効果音が設定されています。デフォルトはワンピースのアニメ音声で、設定ファイルを一つ変えるだけで別のサウンドパックに切り替えられます。
 
 ## 仕組み
