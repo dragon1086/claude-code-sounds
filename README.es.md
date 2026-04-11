@@ -17,6 +17,19 @@
 
 </div>
 
+<div align="center">
+<br>
+
+*"Cuando todos tienen acceso al mismo AI, el gusto se convierte en el último diferenciador."*  
+<sub>— Kira Klaas</sub>
+
+<br>
+
+## **✦ Haz que tu IA suene a ti. ✦**
+
+<br>
+</div>
+
 Un plugin que reproduce sonidos cada vez que Claude Code realiza una acción. 27 eventos — inicio de sesión, modificación de archivos, tareas completadas y más — tienen efectos de sonido asignados. El pack destacado de este proyecto usa voces reales del anime One Piece, y puedes cambiar de pack modificando un solo archivo de configuración.
 
 ## Demo
@@ -29,7 +42,7 @@ Mira cómo funciona en acción — haz clic en la miniatura para reproducir:
 
 </div>
 
-## Cómo funciona
+## ⚙️ Cómo funciona
 
 <div align="center">
   <img src="docs/assets/flow.png" alt="How claude-code-sounds works" width="700" />
@@ -37,7 +50,7 @@ Mira cómo funciona en acción — haz clic en la miniatura para reproducir:
 
 Utiliza el sistema de hooks nativo de Claude Code para ejecutar un script de Python y reproducir sonidos cuando ocurren eventos específicos. No requiere demonios ni procesos en segundo plano.
 
-## Instalación
+## 🚀 Instalación
 
 ### Opción A — Marketplace de plugins (recomendado)
 
@@ -56,7 +69,8 @@ Al seleccionar el alcance:
 | project | Solo en este proyecto — requiere configuración adicional (ver abajo) |
 | local | Igual que project, pero excluido de git (configuración personal) — también requiere configuración adicional |
 
-> **Tras la instalación:** Reinicia Claude Code para activar los hooks.
+> [!IMPORTANT]
+> Reinicia Claude Code tras la instalación para activar los hooks.
 
 #### Configuración adicional para alcance project/local
 
@@ -87,27 +101,39 @@ git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-> **Tras la instalación:** Reinicia Claude Code para activar los hooks.
+> [!IMPORTANT]
+> Reinicia Claude Code tras la instalación para activar los hooks.
 
-## Requisitos
+## 📋 Requisitos
 
 - Python 3
 - macOS (`afplay`), Linux (`paplay` / `aplay` / `ffplay`), o Windows (`winsound` integrado)
 
 No se necesitan bibliotecas adicionales.
 
-## Cambiar de pack de sonido
+## 🎵 Packs de sonido
 
 Usa el comando `claude-sounds.sh use` para cambiar todos los sonidos a la vez. Esta es la única forma de cambiar de pack — `activePack` en `hooks-config.json` es solo una etiqueta que indica qué pack se aplicó por última vez y no afecta los sonidos que se reproducen en tiempo de ejecución.
 
 ### Packs incluidos
 
-| Pack | Descripción |
-|------|-------------|
-| `onepiece` | Voces reales del anime One Piece — escenas icónicas de Luffy, Zoro, Robin y más |
-| `best-practice` | Voz ElevenLabs "Samara X" — portada desde el proyecto claude-code-best-practice |
-| `silent` | 100ms de silencio — desactiva los sonidos sin eliminar los hooks |
-| `default` | Set de efectos de sonido básicos |
+| Pack | Descripción | Fuente |
+|------|-------------|--------|
+| 🏴‍☠️ **`onepiece`** | **[Insignia]** Voces reales del anime One Piece — Luffy, Zoro, Robin, Franky, Brook y más | Anime original |
+| 🎮 **`faker`** | T1 Faker (이상혁) — clon de voz ElevenLabs IVC | ElevenLabs IVC |
+| ⚔️ **`kimetsu`** | Demon Slayer (鬼滅の刃) — Tanjiro, Rengoku, Zenitsu, Inosuke y más | ElevenLabs TTS |
+| 🔊 **`best-practice`** | ElevenLabs "Samara X" — portado desde [claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | ElevenLabs TTS |
+| 🔇 **`silent`** | 100ms de silencio — desactiva los sonidos sin eliminar los hooks | — |
+| ⚙️ **`default`** | Set de efectos de sonido básicos | — |
+
+### Packs de la comunidad
+
+> [!TIP]
+> **¡Contribuciones bienvenidas!** Cualquier tema, cualquier fandom, cualquier idioma — tarda unos 15 minutos. Ver **[packs/README.md](packs/README.md)** para la guía completa.
+
+| Pack | Autor | Descripción |
+|------|-------|-------------|
+| _(¡sé el primero!)_ | | |
 
 ### Pack destacado — One Piece
 
@@ -139,11 +165,7 @@ Ver el pack activo actualmente: `./claude-sounds.sh current`
 
 Listar todos los packs disponibles: `./claude-sounds.sh list`
 
-### Packs de la comunidad
-
-Consulta [PACKS.md](PACKS.md) para ver los packs contribuidos por la comunidad. Para contribuir con tu propio pack, consulta [packs/README.md](packs/README.md).
-
-## Personalizar sonidos individuales
+## ✏️ Personalizar sonidos individuales
 
 Si solo quieres cambiar el sonido de un evento específico, reemplaza el archivo en `.claude/hooks/sounds/{evento}/`:
 
@@ -171,7 +193,7 @@ BASH_PATTERNS = [
 
 Cada patrón necesita un archivo correspondiente en `sounds/pretooluse/pretooluse-{nombre}.wav`.
 
-## Deshabilitar hooks específicos
+## 🔕 Deshabilitar hooks específicos
 
 Para desactivar hooks individuales sin desinstalar, crea `.claude/hooks/config/hooks-config.local.json` (ignorado por git automáticamente):
 
@@ -184,7 +206,7 @@ Para desactivar hooks individuales sin desinstalar, crea `.claude/hooks/config/h
 
 Consulta `hooks/config/hooks-config.local.json.example` para ver todas las opciones disponibles.
 
-## Cobertura de hooks
+## 🪝 Cobertura de hooks
 
 Los 27 eventos de hooks de Claude Code están conectados, más 6 eventos con alcance de agente:
 
@@ -198,7 +220,7 @@ Los 27 eventos de hooks de Claude Code están conectados, más 6 eventos con alc
 | Entorno | `CwdChanged`, `FileChanged`, `WorktreeCreate`, `WorktreeRemove` |
 | MCP | `Elicitation`, `ElicitationResult` |
 
-## Sonidos para agentes
+## 🤖 Sonidos para agentes
 
 Las sesiones de subagentes pueden reproducir sonidos distintos. Conecta los hooks en el frontmatter de tu agente:
 
@@ -221,13 +243,13 @@ hooks:
 
 Los archivos de sonido van en `agent_pretooluse/`, `agent_stop/`, etc.
 
-## Desinstalar
+## 🗑️ Desinstalar
 
 ```bash
 ./uninstall.sh
 ```
 
-## Créditos
+## 🙏 Créditos
 
 Inspirado en [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice), que demostró por primera vez cómo integrar retroalimentación de audio en los hooks de Claude Code. Este proyecto toma esa idea y la convierte en un plugin independiente e instalable con cobertura completa de hooks, packs de sonido y soporte multiplataforma.
 

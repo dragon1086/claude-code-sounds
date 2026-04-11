@@ -17,6 +17,19 @@
 
 </div>
 
+<div align="center">
+<br>
+
+*"모두가 같은 AI를 쓰게 될 때, 취향이 진짜 차별점이 됩니다."*  
+<sub>— Kira Klaas</sub>
+
+<br>
+
+## **✦ 나만의 AI, 나만의 소리. ✦**
+
+<br>
+</div>
+
 Claude Code가 작업할 때마다 소리로 알려주는 플러그인입니다. 세션 시작, 파일 수정, 작업 완료 등 27가지 이벤트에 효과음이 연결되어 있어요. 여러 사운드 팩 중 이 프로젝트의 대표 팩은 원피스 애니메이션 실제 음성으로 구성되어 있으며, 설정 파일 하나만 바꾸면 다른 팩으로 전환할 수 있습니다.
 
 ## 시연 영상
@@ -29,7 +42,7 @@ Claude Code가 작업할 때마다 소리로 알려주는 플러그인입니다.
 
 </div>
 
-## 동작 방식
+## ⚙️ 동작 방식
 
 <div align="center">
   <img src="docs/assets/flow.png" alt="How claude-code-sounds works" width="700" />
@@ -37,7 +50,7 @@ Claude Code가 작업할 때마다 소리로 알려주는 플러그인입니다.
 
 Claude Code의 훅(hook) 시스템을 이용해서, 특정 이벤트가 발생할 때마다 Python 스크립트가 실행되어 소리를 재생합니다. 별도 데몬이나 백그라운드 프로세스 없이 동작해요.
 
-## 설치
+## 🚀 설치
 
 ### 방법 A — 플러그인 마켓플레이스 (권장)
 
@@ -56,7 +69,8 @@ Claude Code 채팅창에서 아래 명령어를 입력하세요:
 | project | 이 프로젝트에서만 사용 — 아래 추가 설정 필요 |
 | local | project와 같지만 git에 포함되지 않음 (개인 설정용) — 추가 설정 필요 |
 
-> **설치 후:** Claude Code를 재시작해야 훅이 활성화됩니다.
+> [!IMPORTANT]
+> 설치 후 Claude Code를 재시작해야 훅이 활성화됩니다.
 
 #### project/local 스콥으로 설치한 경우
 
@@ -89,27 +103,30 @@ git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-> **설치 후:** Claude Code를 재시작해야 훅이 활성화됩니다.
+> [!IMPORTANT]
+> 설치 후 Claude Code를 재시작해야 훅이 활성화됩니다.
 
-## 요구 사항
+## 📋 요구 사항
 
 - Python 3
 - macOS (`afplay`), Linux (`paplay` / `aplay` / `ffplay`), 또는 Windows (내장 `winsound`)
 
 별도 라이브러리 설치는 필요 없어요.
 
-## 사운드 팩 전환
+## 🎵 사운드 팩 전환
 
 `claude-sounds.sh use` 명령어로 모든 소리를 한 번에 바꿀 수 있어요. 팩을 바꾸는 방법은 이것뿐입니다. `hooks-config.json`의 `activePack`은 마지막으로 적용된 팩을 표시해주는 레이블일 뿐이고, 실제로 어떤 소리가 재생될지에는 영향을 주지 않아요.
 
 ### 기본 제공 팩
 
-| 팩 이름 | 설명 |
-|---------|------|
-| `onepiece` | 원피스 애니메이션 실제 음성 — 루피, 조로, 로빈 등의 명장면 |
-| `best-practice` | ElevenLabs "Samara X" 음성 — claude-code-best-practice 프로젝트에서 가져온 팩 |
-| `silent` | 100ms 무음 — 훅을 제거하지 않고 소리만 끄고 싶을 때 |
-| `default` | 기본 효과음 세트 |
+| 팩 이름 | 설명 | 출처 |
+|---------|------|------|
+| 🏴‍☠️ **`onepiece`** | **[대표 팩]** 원피스 애니메이션 실제 음성 — 루피, 조로, 로빈, 프랑키, 브룩 등 | 원작 애니 음성 |
+| 🎮 **`faker`** | T1 페이커(이상혁) — ElevenLabs IVC 음성 클론 | ElevenLabs IVC |
+| ⚔️ **`kimetsu`** | 귀멸의 칼날(鬼滅の刃) — 탄지로, 렌고쿠, 젠이츠, 이노스케 등 | ElevenLabs TTS |
+| 🔊 **`best-practice`** | ElevenLabs "Samara X" — [claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice)에서 이식 | ElevenLabs TTS |
+| 🔇 **`silent`** | 100ms 무음 — 훅 제거 없이 소리만 비활성화 | — |
+| ⚙️ **`default`** | 기본 효과음 세트 | — |
 
 ### 대표 팩 — 원피스
 
@@ -141,12 +158,16 @@ bash "$(find ~/.claude/plugins/cache/claude-code-sounds -name "claude-sounds.sh"
 
 사용 가능한 팩 목록 보기: `./claude-sounds.sh list`
 
-### 커뮤니티 팩 & 팩 기여
+### 커뮤니티 팩
 
-**팩 기여를 환영합니다** — 어떤 테마, 팬덤, 언어든 좋아요.  
-15분 정도면 만들 수 있어요. 단계별 가이드와 커뮤니티 팩 목록은 **[PACKS.md](PACKS.md)** 를 확인하세요.
+> [!TIP]
+> **팩 기여를 환영합니다** — 어떤 테마, 팬덤, 언어든 좋아요. 15분 정도면 만들 수 있어요. 자세한 가이드는 **[packs/README.ko.md](packs/README.ko.md)** 를 확인하세요.
 
-## 소리 직접 바꾸기
+| 팩 | 제작자 | 설명 |
+|----|--------|------|
+| _(첫 기여자가 되어보세요!)_ | | |
+
+## ✏️ 소리 직접 바꾸기
 
 특정 이벤트의 소리만 바꾸고 싶다면 `.claude/hooks/sounds/{이벤트명}/` 폴더의 파일을 교체하면 됩니다:
 
@@ -174,7 +195,7 @@ BASH_PATTERNS = [
 
 각 패턴에는 `sounds/pretooluse/pretooluse-{이름}.wav` 파일이 필요합니다.
 
-## 특정 훅 끄기
+## 🔕 특정 훅 끄기
 
 전체 제거 없이 일부 훅만 끄고 싶다면 `.claude/hooks/config/hooks-config.local.json` 파일을 만드세요 (git에서 자동으로 무시됩니다):
 
@@ -187,7 +208,7 @@ BASH_PATTERNS = [
 
 사용 가능한 모든 옵션은 `hooks/config/hooks-config.local.json.example` 파일을 참고하세요.
 
-## 훅 커버리지
+## 🪝 훅 커버리지
 
 27개의 Claude Code 훅 이벤트 전체와 에이전트 전용 이벤트 6개가 연결되어 있습니다:
 
@@ -201,7 +222,7 @@ BASH_PATTERNS = [
 | 환경 | `CwdChanged`, `FileChanged`, `WorktreeCreate`, `WorktreeRemove` |
 | MCP | `Elicitation`, `ElicitationResult` |
 
-## 에이전트별 소리 설정
+## 🤖 에이전트별 소리 설정
 
 서브에이전트 세션에 다른 소리를 지정할 수 있습니다. 에이전트 프론트매터에 훅을 추가하세요:
 
@@ -224,13 +245,13 @@ hooks:
 
 에이전트 전용 사운드 파일은 `agent_pretooluse/`, `agent_stop/` 등의 폴더에 저장합니다.
 
-## 제거
+## 🗑️ 제거
 
 ```bash
 ./uninstall.sh
 ```
 
-## 크레딧
+## 🙏 크레딧
 
 Claude Code hooks에 오디오 피드백을 연결한다는 아이디어는 [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice)에서 영감을 받았습니다. 이 프로젝트는 그 아이디어를 독립적인 플러그인으로 발전시켜, 전체 훅 커버리지와 사운드 팩, 크로스 플랫폼 지원을 추가한 버전입니다.
 

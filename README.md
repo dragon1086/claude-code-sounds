@@ -17,6 +17,19 @@
 
 </div>
 
+<div align="center">
+<br>
+
+*"When everyone has access to the same AI, taste becomes the ultimate differentiator."*  
+<sub>— Kira Klaas</sub>
+
+<br>
+
+## **✦ Make your AI sound like you. ✦**
+
+<br>
+</div>
+
 Audio feedback for every Claude Code lifecycle event — powered by the native hooks system. Ships with real ElevenLabs-generated voice files. Swap any sound by replacing one file.
 
 ## Demo
@@ -29,13 +42,13 @@ See what it looks like in action — click the thumbnail to play:
 
 </div>
 
-## How it works
+## ⚙️ How it works
 
 <div align="center">
   <img src="docs/assets/flow.png" alt="How claude-code-sounds works" width="700" />
 </div>
 
-## Install
+## 🚀 Install
 
 ### Option A — Plugin marketplace (recommended)
 
@@ -52,7 +65,8 @@ When prompted for scope:
 | project | Sounds silent — run `setup-project` once per project (see below) |
 | local | Same as project, but excluded from git (personal config) — also needs `setup-project` |
 
-> **After install:** Restart Claude Code for hooks to activate.
+> [!IMPORTANT]
+> Restart Claude Code after install for hooks to activate.
 
 #### Project-scope fix
 
@@ -83,14 +97,15 @@ git clone https://github.com/dragon1086/claude-code-sounds
 cd claude-code-sounds && ./install.sh
 ```
 
-> **After install:** Restart Claude Code for hooks to activate.
+> [!IMPORTANT]
+> Restart Claude Code after install for hooks to activate.
 
-## Requirements
+## 📋 Requirements
 
 - Python 3
 - macOS (`afplay`), Linux (`paplay` / `aplay` / `ffplay`), or Windows (built-in `winsound`)
 
-## Hook Coverage
+## 🪝 Hook Coverage
 
 All 27 Claude Code hook events are wired, plus 6 agent-scoped events:
 
@@ -104,18 +119,29 @@ All 27 Claude Code hook events are wired, plus 6 agent-scoped events:
 | Environment | `CwdChanged`, `FileChanged`, `WorktreeCreate`, `WorktreeRemove` |
 | MCP | `Elicitation`, `ElicitationResult` |
 
-## Sound Packs
+## 🎵 Sound Packs
 
 Switch all sounds at once using the `claude-sounds.sh use` command. This is the only way to switch packs — `activePack` in `hooks-config.json` is a tracking label only and does not affect which sounds are played.
 
-### Available packs
+### Built-in Packs
 
-| Pack | Description |
-|------|-------------|
-| `onepiece` | Real One Piece anime voices — Luffy, Zoro, Robin and more |
-| `best-practice` | ElevenLabs "Samara X" voice — ported from claude-code-best-practice |
-| `silent` | 100ms silence — disables all sounds without removing hooks |
-| `default` | Minimal default sound set |
+| Pack | Description | Source |
+|------|-------------|--------|
+| 🏴‍☠️ **`onepiece`** | **[Flagship]** Real One Piece anime voices — Luffy, Zoro, Robin, Franky, Brook and more | Original anime |
+| 🎮 **`faker`** | T1 Faker (이상혁) — ElevenLabs IVC voice clone | ElevenLabs IVC |
+| ⚔️ **`kimetsu`** | Demon Slayer (鬼滅の刃) — Tanjiro, Rengoku, Zenitsu, Inosuke and more | ElevenLabs TTS |
+| 🔊 **`best-practice`** | ElevenLabs "Samara X" — ported from [claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | ElevenLabs TTS |
+| 🔇 **`silent`** | 100ms silence — disables all sounds without removing hooks | — |
+| ⚙️ **`default`** | Minimal default sound set | — |
+
+### Community Packs
+
+> [!TIP]
+> **Contributions welcome!** Any theme, any fandom, any language — it takes about 15 minutes. See **[packs/README.md](packs/README.md)** for the full guide.
+
+| Pack | Author | Description |
+|------|--------|-------------|
+| _(be the first!)_ | | |
 
 ### Featured pack — One Piece
 
@@ -147,12 +173,7 @@ To see which pack is currently active: `./claude-sounds.sh current`
 
 To list all available packs: `./claude-sounds.sh list`
 
-### Community packs & contributing
-
-**Pack contributions are very welcome** — any theme, any fandom, any language.  
-It takes about 15 minutes. See **[PACKS.md](PACKS.md)** for the step-by-step guide and the list of community packs.
-
-## Customize Sounds
+## ✏️ Customize Sounds
 
 Replace any file in `.claude/hooks/sounds/{event}/`:
 
@@ -180,7 +201,7 @@ BASH_PATTERNS = [
 
 Each pattern needs a matching file in `sounds/pretooluse/pretooluse-{name}.wav`.
 
-## Disable Hooks
+## 🔕 Disable Hooks
 
 To disable individual hooks without uninstalling, create `.claude/hooks/config/hooks-config.local.json` (git-ignored):
 
@@ -193,7 +214,7 @@ To disable individual hooks without uninstalling, create `.claude/hooks/config/h
 
 See `hooks/config/hooks-config.local.json.example` for all available options.
 
-## Agent Sounds
+## 🤖 Agent Sounds
 
 Subagent sessions can play different sounds. Wire hooks in your agent frontmatter:
 
@@ -216,13 +237,13 @@ hooks:
 
 Sound files go in `agent_pretooluse/`, `agent_stop/`, etc.
 
-## Uninstall
+## 🗑️ Uninstall
 
 ```bash
 ./uninstall.sh
 ```
 
-## Credits
+## 🙏 Credits
 
 Inspired by [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice), which first demonstrated wiring audio feedback into Claude Code hooks. This project extracts and generalizes that idea into a standalone, installable plugin with full hook coverage, sound packs, and cross-platform support.
 
