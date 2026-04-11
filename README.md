@@ -20,8 +20,8 @@
 <div align="center">
 <br>
 
-*"When everyone has access to the same AI, taste becomes the ultimate differentiator."*  
-<sub>— Kira Klaas</sub>
+*"In the AI age, taste will become even more important. When anyone can make anything, the big differentiator is what you choose to make."*  
+<sub>— Paul Graham, Y Combinator</sub>
 
 <br>
 

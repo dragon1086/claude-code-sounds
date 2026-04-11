@@ -20,8 +20,8 @@
 <div align="center">
 <br>
 
-*"当所有人都拥有相同的 AI，品味才是真正的差异化。"*  
-<sub>— Kira Klaas</sub>
+*"在 AI 时代，品味将变得更加重要。当任何人都能创造任何东西时，真正的差异化在于你选择创造什么。"*  
+<sub>— Paul Graham, Y Combinator</sub>
 
 <br>
 

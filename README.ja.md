@@ -20,8 +20,8 @@
 <div align="center">
 <br>
 
-*「誰もが同じ AI を手にする時代、あなたを際立たせるのはセンスだけだ。」*  
-<sub>— Kira Klaas</sub>
+*「AI の時代、センスはさらに重要になる。誰もが何でも作れる時代に、本当の差別化は何を作るかを選ぶことにある。」*  
+<sub>— Paul Graham, Y Combinator</sub>
 
 <br>
 

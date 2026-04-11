@@ -20,8 +20,8 @@
 <div align="center">
 <br>
 
-*"Cuando todos tienen acceso al mismo AI, el gusto se convierte en el último diferenciador."*  
-<sub>— Kira Klaas</sub>
+*"En la era de la IA, el gusto se volverá aún más importante. Cuando cualquiera puede crear cualquier cosa, el gran diferenciador es lo que eliges crear."*  
+<sub>— Paul Graham, Y Combinator</sub>
 
 <br>
 

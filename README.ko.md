@@ -20,8 +20,8 @@
 <div align="center">
 <br>
 
-*"모두가 같은 AI를 쓰게 될 때, 취향이 진짜 차별점이 됩니다."*  
-<sub>— Kira Klaas</sub>
+*"AI 시대에 취향은 더욱 중요해질 것입니다. 누구나 무엇이든 만들 수 있을 때, 진짜 차별점은 무엇을 만들기로 선택하느냐입니다."*  
+<sub>— Paul Graham, Y Combinator</sub>
 
 <br>
 
