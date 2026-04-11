@@ -20,10 +20,26 @@ fi
 TARGET="$PROJECT_ROOT/.claude/hooks"
 SETTINGS="$PROJECT_ROOT/.claude/settings.json"
 
-# Remove hooks directory
-if [[ -d "$TARGET" ]]; then
-  rm -rf "$TARGET"
-  echo "Removed $TARGET"
+# Remove only the files/dirs that claude-code-sounds installs.
+# We do NOT rm -rf the entire hooks/ dir — users may have other hooks there.
+removed_any=0
+for subpath in scripts sounds config; do
+  full="$TARGET/$subpath"
+  if [[ -e "$full" ]]; then
+    rm -rf "$full"
+    echo "Removed $full"
+    removed_any=1
+  fi
+done
+
+# Remove the hooks/ dir itself only if it's now empty
+if [[ -d "$TARGET" ]] && [[ -z "$(ls -A "$TARGET")" ]]; then
+  rmdir "$TARGET"
+  echo "Removed $TARGET (empty)"
+fi
+
+if [[ "$removed_any" -eq 0 ]]; then
+  echo "No claude-code-sounds files found in $TARGET"
 fi
 
 # Remove hook entries from settings.json

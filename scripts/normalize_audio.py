@@ -1,22 +1,21 @@
 #!/usr/bin/env python3
 """Normalize audio volume across all sound files using ffmpeg loudnorm filter.
 
-Target: -16 LUFS (podcast/streaming standard), True Peak -1.5 dBTP
-Processes both packs/onepiece/sounds/ and .claude/hooks/sounds/
+Target: -20 LUFS, True Peak -1.5 dBTP
+Usage:
+  python3 normalize_audio.py                  # normalize all packs in this repo
+  python3 normalize_audio.py path/to/sounds/  # normalize a specific directory
 """
 
 import subprocess
-import sys
-import os
 import shutil
 from pathlib import Path
 
-TARGET_LUFS = -16
+TARGET_LUFS = -20
 TRUE_PEAK = -1.5
 LRA = 11
 
-PACK_DIR = Path("/Users/aerok/Desktop/rocky/claude-code-sounds/packs/onepiece/sounds")
-HOOKS_DIR = Path("/Users/aerok/.claude/hooks/hooks/sounds")
+REPO_ROOT = Path(__file__).parent.parent
 
 
 def get_loudness_stats(path: Path) -> dict:
@@ -101,6 +100,16 @@ def process_directory(base_dir: Path, label: str):
 
 
 if __name__ == "__main__":
-    process_directory(PACK_DIR, "packs/onepiece/sounds")
-    process_directory(HOOKS_DIR, "~/.claude/hooks/sounds")
+    import sys
+    if len(sys.argv) > 1:
+        # Normalize a specific directory passed as argument
+        for arg in sys.argv[1:]:
+            d = Path(arg).expanduser().resolve()
+            process_directory(d, str(d))
+    else:
+        # Default: normalize all packs in this repo
+        packs_dir = REPO_ROOT / "packs"
+        for pack_sounds in sorted(packs_dir.glob("*/sounds")):
+            label = str(pack_sounds.relative_to(REPO_ROOT))
+            process_directory(pack_sounds, label)
     print("\nAll done.")

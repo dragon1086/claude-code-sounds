@@ -27,5 +27,5 @@
   "disableTaskCreatedHook": false,
   "disablePermissionDeniedHook": false,
   "disableLogging": true,
-  "activePack": "onepiece"
+  "activePack": "faker"
 }
