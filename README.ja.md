@@ -19,6 +19,16 @@
 
 Claude Code が作業するたびに音で知らせてくれるプラグインです。セッション開始・ファイル変更・タスク完了など 27 種類のイベントに効果音が設定されています。本プロジェクトの代表サウンドパックはワンピースのアニメ実音声で構成されており、設定ファイルを一つ変えるだけで別のパックに切り替えられます。
 
+## デモ動画
+
+実際の動作をご覧ください — サムネイルをクリックして再生：
+
+<div align="center">
+
+[![ワンピース サウンドパック — デモ動画](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
+
+</div>
+
 ## 仕組み
 
 <div align="center">
@@ -102,12 +112,6 @@ cd claude-code-sounds && ./install.sh
 ### 代表パック — ワンピース
 
 このプロジェクトの原点であり代表パックです。ルフィ・ゾロ・ナミ・ロビン・フランキー・ブルックなど、ワンピースアニメの実音声を Claude Code のライフサイクルイベントに対応させました。
-
-<div align="center">
-
-[![ワンピース サウンドパック — デモ動画](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
-
-</div>
 
 全トラックリストは [packs/onepiece/](packs/onepiece/) を参照してください。
 

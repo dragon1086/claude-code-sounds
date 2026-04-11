@@ -19,6 +19,16 @@
 
 Claude Code 每次执行操作时都会有声音提示的插件。会话开始、文件修改、任务完成等 27 种事件都有对应的音效。本项目的代表音效包采用海贼王动漫真实语音，只需修改一个配置文件即可切换到其他音效包。
 
+## 演示视频
+
+点击缩略图播放演示：
+
+<div align="center">
+
+[![海贼王音效包 — 演示视频](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
+
+</div>
+
 ## 工作原理
 
 <div align="center">
@@ -102,12 +112,6 @@ cd claude-code-sounds && ./install.sh
 ### 代表音效包 — 海贼王
 
 本项目的起源与代表音效包。路飞、索隆、娜美、罗宾、弗兰奇、布鲁克等角色的真实动漫语音，与 Claude Code 生命周期事件一一对应。
-
-<div align="center">
-
-[![海贼王音效包 — 演示视频](https://img.youtube.com/vi/wIA4PilUQpo/maxresdefault.jpg)](https://youtu.be/wIA4PilUQpo)
-
-</div>
 
 完整曲目列表请参见 [packs/onepiece/](packs/onepiece/)。
 
