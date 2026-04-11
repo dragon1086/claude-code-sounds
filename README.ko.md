@@ -125,6 +125,8 @@ cd claude-code-sounds && ./install.sh
 | 🎮 **`faker`** | T1 페이커(이상혁) — ElevenLabs IVC 음성 클론 | ElevenLabs IVC |
 | ⚔️ **`kimetsu`** | 귀멸의 칼날(鬼滅の刃) — 탄지로, 렌고쿠, 젠이츠, 이노스케 등 | ElevenLabs TTS |
 | 🔊 **`best-practice`** | ElevenLabs "Samara X" — [claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice)에서 이식 | ElevenLabs TTS |
+| 💬 **`devquotes-en`** | 개발자 동기부여 명언 (영어) — 토르발즈, 크누스, 벡 등 실제 명언 | ElevenLabs TTS |
+| 💬 **`devquotes-ko`** | 개발자 동기부여 명언 (한국어) — 토르발즈, 크누스, 벡 등 실제 명언 | ElevenLabs TTS |
 | 🔇 **`silent`** | 100ms 무음 — 훅 제거 없이 소리만 비활성화 | — |
 | ⚙️ **`default`** | 기본 효과음 세트 | — |
 

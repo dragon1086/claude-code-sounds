@@ -21,6 +21,8 @@ It takes about 15 minutes — full guide in **[packs/README.md](packs/README.md)
 | `faker` | T1 Faker (이상혁) voice pack — IVC cloned via ElevenLabs | ElevenLabs IVC |
 | `kimetsu` | Demon Slayer (鬼滅の刃) — Tanjiro, Rengoku, Zenitsu, Inosuke and more | ElevenLabs TTS |
 | `best-practice` | ElevenLabs "Samara X" voice — ported from [claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | ElevenLabs TTS |
+| `devquotes-en` | Developer motivational quotes (EN) — real wisdom from Torvalds, Knuth, Beck and more | ElevenLabs TTS |
+| `devquotes-ko` | 개발자 동기부여 명언 (KO) — 토르발즈, 크누스, 벡 등 실제 명언 | ElevenLabs TTS |
 | `silent` | 100ms silence — disables all sounds without removing hooks | — |
 | `default` | Minimal default sound set | — |
 

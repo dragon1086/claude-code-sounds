@@ -123,6 +123,8 @@ Usa el comando `claude-sounds.sh use` para cambiar todos los sonidos a la vez. E
 | 🎮 **`faker`** | T1 Faker (이상혁) — clon de voz ElevenLabs IVC | ElevenLabs IVC |
 | ⚔️ **`kimetsu`** | Demon Slayer (鬼滅の刃) — Tanjiro, Rengoku, Zenitsu, Inosuke y más | ElevenLabs TTS |
 | 🔊 **`best-practice`** | ElevenLabs "Samara X" — portado desde [claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | ElevenLabs TTS |
+| 💬 **`devquotes-en`** | Citas motivacionales de desarrolladores (EN) — sabiduría real de Torvalds, Knuth, Beck y más | ElevenLabs TTS |
+| 💬 **`devquotes-ko`** | Citas motivacionales de desarrolladores (KO) — sabiduría real de Torvalds, Knuth, Beck y más | ElevenLabs TTS |
 | 🔇 **`silent`** | 100ms de silencio — desactiva los sonidos sin eliminar los hooks | — |
 | ⚙️ **`default`** | Set de efectos de sonido básicos | — |
 

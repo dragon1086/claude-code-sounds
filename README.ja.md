@@ -123,6 +123,8 @@ cd claude-code-sounds && ./install.sh
 | 🎮 **`faker`** | T1 Faker（이상혁）— ElevenLabs IVC 音声クローン | ElevenLabs IVC |
 | ⚔️ **`kimetsu`** | 鬼滅の刃 — 炭治郎・煉獄・善逸・伊之助など | ElevenLabs TTS |
 | 🔊 **`best-practice`** | ElevenLabs "Samara X" — [claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) から移植 | ElevenLabs TTS |
+| 💬 **`devquotes-en`** | 開発者の名言（英語）— Torvalds、Knuth、Beck などの実際の言葉 | ElevenLabs TTS |
+| 💬 **`devquotes-ko`** | 開発者の名言（韓国語）— Torvalds、Knuth、Beck などの実際の言葉 | ElevenLabs TTS |
 | 🔇 **`silent`** | 100ms の無音 — フックを削除せずに音だけ消したいときに | — |
 | ⚙️ **`default`** | 基本デフォルト効果音セット | — |
 
