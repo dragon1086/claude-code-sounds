@@ -199,9 +199,28 @@ def play_sound(sound_name):
                         # winsound not available, fail silently
                         return False
                 else:
-                    # Unix/Linux/macOS: use subprocess with audio player
+                    # Unix/Linux/macOS: "first wins" — if audio is already playing,
+                    # silently skip rather than queue.  Spawn a detached wrapper
+                    # process that holds /tmp/claude-code-sounds.lock for the full
+                    # duration of playback (LOCK_NB → skip if busy, then blocking
+                    # subprocess.run keeps the lock until the sound finishes).
+                    # hooks.py itself exits immediately so Claude is never blocked.
+                    player_cmd = repr(audio_player + [str(file_path)])
+                    wrapper = (
+                        "import fcntl,subprocess,sys\n"
+                        "lf=open('/tmp/claude-code-sounds.lock','w')\n"
+                        "try:\n"
+                        "    fcntl.flock(lf,fcntl.LOCK_EX|fcntl.LOCK_NB)\n"
+                        "except (IOError,OSError):\n"
+                        "    sys.exit(0)\n"
+                        "try:\n"
+                        f"    subprocess.run({player_cmd},stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n"
+                        "finally:\n"
+                        "    fcntl.flock(lf,fcntl.LOCK_UN)\n"
+                        "    lf.close()\n"
+                    )
                     subprocess.Popen(
-                        audio_player + [str(file_path)],
+                        [sys.executable, "-c", wrapper],
                         stdout=subprocess.DEVNULL,
                         stderr=subprocess.DEVNULL,
                         start_new_session=True
