@@ -1,7 +1,7 @@
 {
   "name": "claude-code-sounds",
   "description": "Audio feedback for every Claude Code lifecycle event. Ships with ElevenLabs voice files, zero config, full hook coverage.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": {
     "name": "dragon1086"
   },
