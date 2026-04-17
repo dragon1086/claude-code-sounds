@@ -58,6 +58,36 @@ with open(path, 'w') as f:
     fi
 }
 
+# Emit a warning if every audio file in $1 is byte-identical to the
+# corresponding file in $2. This usually means the plugin cache is stale —
+# the pack was not populated with its real audio at the time the cache
+# was built (historical issue: v1.1.1 shipped onepiece as default placeholders).
+warn_if_pack_identical_to_default() {
+    local pack_sounds_dir="$1"
+    local default_sounds_dir="$2"
+    local pack_name="$3"
+
+    [[ -d "$pack_sounds_dir" && -d "$default_sounds_dir" ]] || return 0
+    [[ "$pack_sounds_dir" != "$default_sounds_dir" ]] || return 0
+
+    local any=0
+    while IFS= read -r -d '' src; do
+        local rel="${src#$pack_sounds_dir/}"
+        local dflt="$default_sounds_dir/$rel"
+        any=1
+        if [[ ! -f "$dflt" ]] || ! cmp -s "$src" "$dflt"; then
+            return 0
+        fi
+    done < <(find "$pack_sounds_dir" -type f \( -name "*.wav" -o -name "*.mp3" \) -print0)
+
+    if [[ $any -eq 1 ]]; then
+        echo "" >&2
+        echo "warning: pack '$pack_name' has no audio distinct from the default pack." >&2
+        echo "         your plugin cache may be stale. update the plugin:" >&2
+        echo "           in Claude Code → /plugin  → update claude-code-sounds" >&2
+    fi
+}
+
 # Copy a pack's sounds/ tree into hooks/sounds/.
 # Always starts from the default pack, then overlays the target pack on top.
 # This guarantees partial packs fall back to default for missing slots —
@@ -227,6 +257,11 @@ cmd_use() {
     apply_pack_sounds "$pack_sounds"
     set_active_pack "$target"
     info "Done. Active pack: $target"
+
+    # Stale-pack guard: warn if the pack's audio is byte-identical to default.
+    # Happens when the plugin cache was built before the pack got real audio
+    # (e.g. v1.1.1 shipped onepiece wav files as default placeholders).
+    warn_if_pack_identical_to_default "$pack_sounds" "$PACKS_DIR/default/sounds" "$target"
 }
 
 # Build a silent pack by copying the sounds structure and replacing files with silence
